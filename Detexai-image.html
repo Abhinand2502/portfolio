@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DetexAI Gallery</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #005eb8;
+    }
+
+    .slider-container {
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .slider {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 450px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      height: 450px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .navigation {
+      margin-top: 20px;
+    }
+
+    .navigation button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      background: #005eb8;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-home {
+      margin-top: 40px;
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>DetexAI Gallery</h2>
+
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slides" id="slides">
+        <img src="images/TLOGIN (1).png" alt="AI AssistCart Demo 1">
+        <img src="images/THOME.png" alt="AI AssistCart Demo 2">
+        <img src="images/TPROF.png" alt="AI AssistCart Demo 3">
+        <img src="images/TUPLOAD.png" alt="AI AssistCart Demo 4">
+        <img src="images/TRESULT.png" alt="AI AssistCart Demo 5">
+        <img src="images/TRESULT1.png" alt="AI AssistCart Demo 6">
+        <img src="images/THIST.png" alt="AI AssistCart Demo 7">
+        <img src="images/THIST2.png" alt="AI AssistCart Demo 8">
+        <img src="images/TCOM.png" alt="AI AssistCart Demo 9">
+        <img src="images/ALOG.png" alt="AI AssistCart Demo 10">
+        <img src="images/AHOME.png" alt="AI AssistCart Demo 11">
+        <img src="images/AUSER.png" alt="AI AssistCart Demo 12">
+        <img src="images/AHIST.png" alt="AI AssistCart Demo 13">
+        <img src="images/ACOMP.png" alt="AI AssistCart Demo 14">
+        
+      </div>
+    </div>
+
+    <div class="navigation">
+      <button onclick="prev()">Previous</button>
+      <button onclick="next()">Next</button>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-home">← Back to Home</a>
+
+  <script>
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+
+    function updateSlide() {
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function next() {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      updateSlide();
+    }
+
+    function prev() {
+      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+      updateSlide();
+    }
+  </script>
+
+</body>
+</html>
