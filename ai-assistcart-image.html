@@ -1,285 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AI-AssistCart Project Dashboard</title>
-<style>
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
-    margin: 0;
-    padding: 20px;
-    color: #1f2937;
-  }
-
-  /* Back button */
-  .back-home {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 18px;
-    background: #374151;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background 0.2s ease;
-  }
-
-  .back-home:hover {
-    background: #1f2937;
-  }
-
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 32px;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  /* Panel Styles */
-  .panel {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    padding: 24px;
-  }
-
-  .section-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #2563eb;
-    margin-bottom: 12px;
-  }
-
-  .project-description {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #4b5563;
-    background: #f3f4f6;
-    padding: 14px 16px;
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  .dashboard-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
-  .action-btn {
-    background: #2563eb;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s ease;
-  }
-
-  .action-btn:hover {
-    background: #1e4fd7;
-  }
-
-  .action-btn img {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Tech Stack */
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f9fafb;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #374151;
-    border: 1px solid #e5e7eb;
-  }
-
-  .tech-item img {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Slider */
-  .slider-container {
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    overflow: hidden;
-  }
-
-  .slider {
-    position: relative;
-    height: 400px;
-    overflow: hidden;
-  }
-
-  .slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-
-  .slides img {
-    width: 100%;
-    height: 400px;
-    object-fit: contain;
-    background: #f3f4f6;
-  }
-
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    border-top: 1px solid #e5e7eb;
-  }
-
-  .nav-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-
-  .nav-btn:hover {
-    background: #1e4fd7;
-  }
-
-  /* MOBILE RESPONSIVE */
-  @media (max-width: 768px) {
-    .container {
-      grid-template-columns: 1fr;
+  <meta charset="utf-8" />
+  <!-- THIS IS CRUCIAL for responsive behaviour -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-AssistCart Project Dashboard</title>
+  <style>
+    :root{
+      --gap: 24px;
+      --card-radius: 16px;
+      --primary: #2563eb;
+      --muted: #f3f4f6;
+      --text: #1f2937;
     }
 
-    .slider {
-      height: 250px;
+    /* Page */
+    body{
+      margin:0;
+      padding:20px;
+      font-family: Inter, system-ui, Arial, sans-serif;
+      background:#f9fafb;
+      color:var(--text);
     }
 
-    .slides img {
-      height: 250px;
+    /* Top back button */
+    .back-home{
+      display:inline-block;
+      margin-bottom:18px;
+      padding:8px 14px;
+      background:#374151;
+      color:white;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:600;
     }
 
-    h2 {
-      font-size: 22px;
+    h2{
+      text-align:center;
+      margin:8px 0 24px;
+      font-size:28px;
+      color:#111827;
     }
-  }
-</style>
 
+    /* Grid layout with named areas for explicit stacking order */
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;
+      grid-template-areas: "panel slider";
+      gap:var(--gap);
+      align-items:start;
+    }
+
+    .panel{
+      grid-area: panel;
+      background:white;
+      border-radius:var(--card-radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.05);
+      padding:20px;
+    }
+
+    .slider-container{
+      grid-area: slider;
+      background:white;
+      border-radius:var(--card-radius);
+      box-shadow:0 6px 20px rgba(0,0,0,0.05);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .section-title{ color:var(--primary); font-weight:700; font-size:16px; margin-bottom:10px; }
+    .project-description{
+      background:var(--muted);
+      padding:12px;
+      border-radius:8px;
+      color:#4b5563;
+      line-height:1.6;
+    }
+
+    .dashboard-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .action-btn{
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--primary); color:white; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600;
+    }
+
+    .tech-stack{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .tech-item{ background:#f8fafc; border:1px solid #e5e7eb; padding:6px 10px; border-radius:8px; font-size:13px; }
+
+    /* Slider specifics */
+    .slider{
+      position:relative;
+      height:400px;
+      overflow:hidden;
+      background:var(--muted);
+    }
+
+    .slides{
+      display:flex;
+      transition:transform .45s ease;
+      will-change:transform;
+    }
+
+    .slide{
+      min-width:100%;
+      flex-shrink:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--muted);
+    }
+
+    .slide img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .navigation{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px;
+      border-top:1px solid #e5e7eb;
+      align-items:center;
+    }
+
+    .nav-btn{
+      padding:8px 14px;
+      border-radius:10px;
+      border:none;
+      background:var(--primary);
+      color:white;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    /* Desktop & tablet visual adjustments */
+    @media (min-width: 1200px){
+      .slider{ height:420px; }
+      .slide img{ object-fit:cover; }
+    }
+
+    /* MOBILE: stack and adjust sizes */
+    @media (max-width: 760px){
+      /* Important: switch to single-column and explicit stacking via areas */
+      .container{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "panel"
+          "slider";
+      }
+
+      .panel{ padding:16px; }
+      .slider{ height:260px; }
+      .slide img{ height:260px; object-fit:contain; }
+      .navigation{ justify-content:center; }
+
+      /* make nav buttons inline and centered on mobile */
+      .nav-btn{ min-width:110px; }
+    }
+
+    /* small polish */
+    .section-title + .dashboard-actions{ margin-bottom:8px; }
+  </style>
 </head>
 <body>
 
-<a href="index.html" class="back-home">← Back to Home</a>
+  <a class="back-home" href="index.html">← Back to Home</a>
 
-<h2>AI-AssistCart Project Dashboard</h2>
+  <h2>AI-AssistCart Project Dashboard</h2>
 
-<div class="container">
-  
-  <!-- Project Details -->
-  <div class="panel">
-    <div>
+  <div class="container">
+
+    <!-- left panel -->
+    <div class="panel">
       <div class="section-title">Project Overview</div>
       <div class="project-description">
         AI-AssistCart is an AI-powered e-commerce platform that automates product recommendations,
         streamlines checkout, and provides advanced admin management tools to enhance online shopping.
       </div>
-    </div>
 
-    <div>
-      <div class="section-title">Quick Actions</div>
-      <div class="dashboard-actions">
-        <a href="docs/AI-AssistCart.pdf" target="_blank" class="action-btn">
-          <img src="icons/doc.png" alt=""> Documentation
-        </a>
-        <a href="https://github.com/YourUsername/AI-AssistCart" target="_blank" class="action-btn">
-          <img src="icons/code.png" alt=""> View Code
-        </a>
+      <div style="margin-top:16px;">
+        <div class="section-title">Quick Actions</div>
+        <div class="dashboard-actions">
+          <a class="action-btn" href="docs/AI-AssistCart.pdf" target="_blank">📄 Documentation</a>
+          <a class="action-btn" href="https://github.com/YourUsername/AI-AssistCart" target="_blank">💻 View Code</a>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;">
+        <div class="section-title">Technologies Used</div>
+        <div class="tech-stack">
+          <div class="tech-item">HTML5</div>
+          <div class="tech-item">CSS3</div>
+          <div class="tech-item">JavaScript</div>
+          <div class="tech-item">Python</div>
+          <div class="tech-item">Flask</div>
+          <div class="tech-item">MySQL</div>
+        </div>
       </div>
     </div>
 
-    <div>
-      <div class="section-title">Technologies Used</div>
-      <div class="tech-stack">
-        <div class="tech-item"><img src="tech/html.png" alt="HTML5"> HTML5</div>
-        <div class="tech-item"><img src="tech/css.png" alt="CSS3"> CSS3</div>
-        <div class="tech-item"><img src="tech/js.png" alt="JavaScript"> JavaScript</div>
-        <div class="tech-item"><img src="tech/python.png" alt="Python"> Python</div>
-        <div class="tech-item"><img src="tech/flask.png" alt="Flask"> Flask</div>
-        <div class="tech-item"><img src="tech/mysql.png" alt="MySQL"> MySQL</div>
+    <!-- right slider -->
+    <div class="slider-container">
+      <div class="slider" aria-hidden="false">
+        <div class="slides" id="slides">
+          <!-- wrap each image in .slide so slide width is reliably 100% -->
+          <div class="slide"><img src="images/login.png" alt="demo1"></div>
+          <div class="slide"><img src="images/signup.png" alt="demo2"></div>
+          <div class="slide"><img src="images/home.png" alt="demo3"></div>
+          <div class="slide"><img src="images/cash.png" alt="demo4"></div>
+          <div class="slide"><img src="images/admin.png" alt="demo5"></div>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <button class="nav-btn" id="prevBtn">← Previous</button>
+        <button class="nav-btn" id="nextBtn">Next →</button>
       </div>
     </div>
+
   </div>
 
-  <!-- Image Slider -->
-  <div class="slider-container">
-    <div class="slider">
-      <div class="slides" id="slides">
-        <img src="images/login.png" alt="AI AssistCart Demo 1">
-        <img src="images/signup.png" alt="AI AssistCart Demo 2">
-        <img src="images/home.png" alt="AI AssistCart Demo 3">
-        <img src="images/cash.png" alt="AI AssistCart Demo 4">
-        <img src="images/admin.png" alt="AI AssistCart Demo 5">
-        <img src="images/product.png" alt="AI AssistCart Demo 6">
-        <img src="images/orders.png" alt="AI AssistCart Demo 7">
-      </div>
-    </div>
-    <div class="navigation">
-      <button class="nav-btn" onclick="prev()">← Previous</button>
-      <button class="nav-btn" onclick="next()">Next →</button>
-    </div>
-  </div>
+  <script>
+    // Slider JS (basic + mobile swipe)
+    const slides = document.getElementById('slides');
+    const slideCount = slides.children.length;
+    let currentIndex = 0;
 
-</div>
+    function updateSlide(){
+      slides.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
+    }
 
-<script>
-  let currentIndex = 0;
-  const slides = document.getElementById('slides');
-  const totalSlides = slides.children.length;
+    function next(){
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlide();
+    }
+    function prev(){
+      currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+      updateSlide();
+    }
 
-  function updateSlide() {
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
+    document.getElementById('nextBtn').addEventListener('click', next);
+    document.getElementById('prevBtn').addEventListener('click', prev);
 
-  function next() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlide();
-  }
+    // Simple touch swipe support
+    let startX = 0;
+    slides.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    }, {passive:true});
 
-  function prev() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlide();
-  }
-</script>
-
+    slides.addEventListener('touchend', (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) next();
+        else prev();
+      }
+    });
+  </script>
 </body>
 </html>
