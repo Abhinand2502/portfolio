@@ -174,21 +174,32 @@
     background: #1e4fd7;
   }
 
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-    }
-    .slider {
-      height: auto;
-    }
-    .slides img {
-      height: auto;
-    }
-    h2 {
-      font-size: 22px;
-    }
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* spacing between blocks */
+    width: 100%;
   }
+
+  .slider {
+    width: 100%;
+    height: auto; /* let height adjust naturally */
+  }
+
+  .slides img {
+    width: 100%; /* make image fill container */
+    height: auto; /* maintain aspect ratio */
+    object-fit: cover;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-align: center; /* optional for better look */
+  }
+}
+
 </style>
 </head>
 <body>
