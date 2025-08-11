@@ -8,19 +8,28 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body style="background: url('assets/ABC.avif')">
-  <header>
-    <nav>
-      <div class="logo">WELCOME</div>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <nav>
+    <div class="logo">WELCOME</div>
+
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#resume">Resume</a></li>
+    </ul>
+
+    <div class="header-contacts">
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://github.com/Abhinand2502" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/abhinand-babu-153b66324" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/_abhinand_babu?igsh=cmptbDR6Z3E5ZmZn" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </nav>
+</header>
+
+
 <section id="home" class="section home" 
   style="background: url('assets/background.avif') center center / cover no-repeat, #fefefe;
          color: #111;
@@ -110,57 +119,6 @@
 <br><br>
 <a href="assets/resume.pdf" class="btn" download>Download Resume</a>
   </section>
-<section id="contact" class="section" style="background: #fff; color: #111; padding: 60px 20px; border-radius: 10px; margin: 40px auto; max-width: 1000px;">
-  <h2 style="font-size: 32px; margin-bottom: 20px; color: #005eb8; text-align: center;">Contact</h2>
-
-  <!-- Email Row -->
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-    <p style="font-size: 16px; color: #222; margin: 0;">
-      📧 abhinandbabu2502@gmail.com
-    </p>
-    <!-- <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com" target="_blank"
-       style="background-color: #d44638; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-      Send Email
-    </a> -->
-    <a id="emailLink"
-   href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com"
-   target="_blank"
-   style="background-color: #d44638; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-  Send Email
-</a>
-
-<script>
-  // Detect if user is on a mobile device
-  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    document.getElementById("emailLink").href = "mailto:abhinandbabu2502@gmail.com";
-    document.getElementById("emailLink").removeAttribute("target"); // so it opens in mail app
-  }
-</script>
-
-  </div>
-
-  <!-- GitHub Row -->
-  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-    <p style="font-size: 16px; color: #222; margin: 0;">
-      💻 github.com/Abhinand2502
-    </p>
-    <a href="https://github.com/Abhinand2502" target="_blank"
-       style="background-color: #333; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-      View GitHub
-    </a>
-  </div>
-
-  <!-- LinkedIn Row -->
-  <div style="display: flex; align-items: center; justify-content: space-between;">
-    <p style="font-size: 16px; color: #222; margin: 0;">
-      🔗 www.linkedin.com/in/abhinand-babu-153b66324
-    </p>
-    <a href="https://www.linkedin.com/in/abhinand-babu-153b66324" target="_blank"
-       style="background-color: #0077b5; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
-      Visit LinkedIn
-    </a>
-  </div>
-</section>
 
 
   <footer>
