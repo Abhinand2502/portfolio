@@ -147,17 +147,40 @@
   }
   .dot.active{ background:var(--primary); }
 
-  /* Responsive: Mobile stacks column with panel on top, slider below */
-  @media (max-width: 768px){
-    .container{
-      flex-direction:column; /* panel first, slider second */
-      gap:20px;
-      width:100%;
-    }
-    .panel, .slider-container{ min-height:unset; width:100%; }
-    .slider{ min-height:260px; } /* give slider room on mobile */
-    h2{ font-size:22px; }
+  /* Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
   }
+
+  .panel,
+  .slider-container {
+    width: 100%;
+    height: 300px; /* same height for both blocks */
+    box-sizing: border-box;
+  }
+
+  .slider {
+    width: 100%;
+    height: 100%;
+  }
+
+  .slides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills space without white gaps */
+    border-radius: 10px;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -202,7 +225,7 @@
     <div class="slider" id="slider">
       <div class="slides" id="slides">
         <!-- Replace the srcs below with your image paths -->
-        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Login+Screen" alt="AI AssistCart Demo 1"></div>
+        <div class="slide"><img src="images/home.png" alt="AI AssistCart Demo 1"></div>
         <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Signup+Screen" alt="AI AssistCart Demo 2"></div>
         <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Home+Screen" alt="AI AssistCart Demo 3"></div>
         <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Cash+Screen" alt="AI AssistCart Demo 4"></div>
