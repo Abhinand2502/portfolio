@@ -118,10 +118,25 @@
     <p style="font-size: 16px; color: #222; margin: 0;">
       📧 abhinandbabu2502@gmail.com
     </p>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com" target="_blank"
+    <!-- <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com" target="_blank"
        style="background-color: #d44638; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
       Send Email
-    </a>
+    </a> -->
+    <a id="emailLink"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinandbabu2502@gmail.com"
+   target="_blank"
+   style="background-color: #d44638; color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: bold;">
+  Send Email
+</a>
+
+<script>
+  // Detect if user is on a mobile device
+  if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.getElementById("emailLink").href = "mailto:abhinandbabu2502@gmail.com";
+    document.getElementById("emailLink").removeAttribute("target"); // so it opens in mail app
+  }
+</script>
+
   </div>
 
   <!-- GitHub Row -->
