@@ -1,224 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AI-AssistCart Project Dashboard</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AI-AssistCart Project Dashboard — Fixed</title>
 <style>
+  :root{
+    --primary: #2563eb;
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --muted: #4b5563;
+  }
+
   body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f9fafb;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background-color: var(--bg);
     margin: 0;
     padding: 20px;
     color: #1f2937;
+    -webkit-font-smoothing:antialiased;
   }
 
-  /* Back button */
-  .back-home {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 18px;
-    background: #374151;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background 0.2s ease;
-  }
-  .back-home:hover {
-    background: #1f2937;
+  .back-home{
+    display:inline-block;
+    margin-bottom:16px;
+    padding:10px 16px;
+    background:#374151;color:#fff;border-radius:10px;
+    text-decoration:none;font-weight:600;
   }
 
-  h2 {
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    text-align: center;
-    margin-bottom: 30px;
+  h2{
+    text-align:center;
+    margin: 6px 0 26px;
+    font-size:28px;font-weight:700;color:#111827;
   }
 
   /* Layout */
-  .container {
-    display: flex;
-    gap: 32px;
-    max-width: 1200px;
-    margin: auto;
-    align-items: stretch; /* equal height */
+  .container{
+    display:flex;
+    gap:32px;
+    max-width:1200px;
+    margin: 0 auto;
+    align-items:stretch; /* equal height columns on desktop */
   }
+
   .panel,
-  .slider-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  .slider-container{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-height:420px; /* ensures even height on desktop */
   }
 
-  /* Panel Styles */
-  .panel {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  /* Panel */
+  .panel{
+    background:var(--card);
+    border-radius:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.05);
+    padding:24px;
+    justify-content:space-between;
   }
-  .section-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #2563eb;
-    margin-bottom: 12px;
+  .section-title{ color:var(--primary); font-weight:600; margin-bottom:10px; font-size:15px; }
+  .project-description{
+    background:#f3f4f6;
+    padding:14px;border-radius:10px;color:var(--muted);
+    line-height:1.6;font-size:14px;
   }
-  .project-description {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #4b5563;
-    background: #f3f4f6;
-    padding: 14px 16px;
-    border-radius: 10px;
-  }
-
-  /* Buttons */
-  .dashboard-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .action-btn {
-    background: #2563eb;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.2s ease;
-  }
-  .action-btn:hover {
-    background: #1e4fd7;
-  }
-  .action-btn img {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Tech Stack */
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .tech-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f9fafb;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    color: #374151;
-    border: 1px solid #e5e7eb;
-  }
-  .tech-item img {
-    width: 20px;
-    height: 20px;
-  }
+  .dashboard-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .action-btn{ background:var(--primary); color:#fff; padding:10px 14px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-weight:600; }
+  .tech-stack{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
+  .tech-item{ background:#f9fafb; border:1px solid #e5e7eb; padding:8px 12px; border-radius:8px; display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
 
   /* Slider */
-  .slider-container {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    overflow: hidden;
-  }
-  .slider {
-    flex: 1; /* match height with panel */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f3f4f6;
-    overflow: hidden;
-  }
-  .slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    height: 100%;
-  }
-  .slides img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* no crop */
-    background: #f3f4f6;
-  }
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    border-top: 1px solid #e5e7eb;
-  }
-  .nav-btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .nav-btn:hover {
-    background: #1e4fd7;
+  .slider-container{
+    background:var(--card);
+    border-radius:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.05);
+    overflow:hidden;
   }
 
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .container {
-      display: flex;
-      flex-direction: column; /* panel first, slider second */
-      gap: 20px;
-      width: 100%;
-    }
+  .slider{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f3f4f6;
+    position:relative;
+    overflow:hidden;
+  }
 
-    .panel {
-      order: 1; /* explicitly first */
-      width: 100%;
-    }
+  /* slides as a track with slide children */
+  .slides{
+    display:flex;
+    height:100%;
+    width:100%;
+    will-change:transform;
+    user-select:none;
+  }
+  .slide{
+    flex:0 0 100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:16px;
+    box-sizing:border-box;
+  }
+  .slide img{
+    width:100%;
+    max-width:900px;
+    height:auto;
+    object-fit:contain;
+    border-radius:8px;
+    display:block;
+  }
 
-    .slider-container {
-      order: 2; /* explicitly second */
-      width: 100%;
-    }
+  .navigation{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 16px;
+    border-top:1px solid #e5e7eb;
+  }
+  .nav-btn{
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+  }
 
-    .slider {
-      width: 100%;
-      height: auto;
-    }
+  .nav-btn:active{ transform:translateY(1px); }
 
-    .slides img {
-      width: 100%;
-      height: auto;
-      object-fit: contain; /* keep full image */
-    }
+  /* small indicator dots */
+  .dots{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:14px;
+    display:flex;
+    gap:8px;
+    z-index:5;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;background:rgba(0,0,0,0.15); cursor:pointer;
+  }
+  .dot.active{ background:var(--primary); }
 
-    h2 {
-      font-size: 22px;
-      text-align: center;
+  /* Responsive: Mobile stacks column with panel on top, slider below */
+  @media (max-width: 768px){
+    .container{
+      flex-direction:column; /* panel first, slider second */
+      gap:20px;
+      width:100%;
     }
+    .panel, .slider-container{ min-height:unset; width:100%; }
+    .slider{ min-height:260px; } /* give slider room on mobile */
+    h2{ font-size:22px; }
   }
 </style>
 </head>
 <body>
 
-<a href="index.html" class="back-home">← Back to Home</a>
-
+<a class="back-home" href="index.html">← Back to Home</a>
 <h2>AI-AssistCart Project Dashboard</h2>
 
 <div class="container">
-  <!-- Project Details -->
+  <!-- Project Details (keeps being first in DOM, so on mobile it will appear on top) -->
   <div class="panel">
     <div>
       <div class="section-title">Project Overview</div>
@@ -227,65 +175,171 @@
         streamlines checkout, and provides advanced admin management tools to enhance online shopping.
       </div>
     </div>
+
     <div>
       <div class="section-title">Quick Actions</div>
       <div class="dashboard-actions">
-        <a href="docs/AI-AssistCart.pdf" target="_blank" class="action-btn">
-          <img src="icons/doc.png" alt=""> Documentation
-        </a>
-        <a href="https://github.com/YourUsername/AI-AssistCart" target="_blank" class="action-btn">
-          <img src="icons/code.png" alt=""> View Code
-        </a>
+        <a class="action-btn" href="docs/AI-AssistCart.pdf" target="_blank">📄 Documentation</a>
+        <a class="action-btn" href="https://github.com/YourUsername/AI-AssistCart" target="_blank">💻 View Code</a>
       </div>
     </div>
+
     <div>
       <div class="section-title">Technologies Used</div>
       <div class="tech-stack">
-        <div class="tech-item"><img src="tech/html.png" alt="HTML5"> HTML5</div>
-        <div class="tech-item"><img src="tech/css.png" alt="CSS3"> CSS3</div>
-        <div class="tech-item"><img src="tech/js.png" alt="JavaScript"> JavaScript</div>
-        <div class="tech-item"><img src="tech/python.png" alt="Python"> Python</div>
-        <div class="tech-item"><img src="tech/flask.png" alt="Flask"> Flask</div>
-        <div class="tech-item"><img src="tech/mysql.png" alt="MySQL"> MySQL</div>
+        <div class="tech-item">HTML5</div>
+        <div class="tech-item">CSS3</div>
+        <div class="tech-item">JavaScript</div>
+        <div class="tech-item">Python</div>
+        <div class="tech-item">Flask</div>
+        <div class="tech-item">MySQL</div>
       </div>
     </div>
   </div>
 
   <!-- Image Slider -->
   <div class="slider-container">
-    <div class="slider">
+    <div class="slider" id="slider">
       <div class="slides" id="slides">
-        <img src="images/login.png" alt="AI AssistCart Demo 1">
-        <img src="images/signup.png" alt="AI AssistCart Demo 2">
-        <img src="images/home.png" alt="AI AssistCart Demo 3">
-        <img src="images/cash.png" alt="AI AssistCart Demo 4">
-        <img src="images/admin.png" alt="AI AssistCart Demo 5">
-        <img src="images/product.png" alt="AI AssistCart Demo 6">
-        <img src="images/orders.png" alt="AI AssistCart Demo 7">
+        <!-- Replace the srcs below with your image paths -->
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Login+Screen" alt="AI AssistCart Demo 1"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Signup+Screen" alt="AI AssistCart Demo 2"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Home+Screen" alt="AI AssistCart Demo 3"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Cash+Screen" alt="AI AssistCart Demo 4"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Admin+Screen" alt="AI AssistCart Demo 5"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Product+Screen" alt="AI AssistCart Demo 6"></div>
+        <div class="slide"><img src="https://via.placeholder.com/1000x700?text=Orders+Screen" alt="AI AssistCart Demo 7"></div>
       </div>
+
+      <!-- dots -->
+      <div class="dots" id="dots" aria-hidden="true"></div>
     </div>
+
     <div class="navigation">
-      <button class="nav-btn" onclick="prev()">← Previous</button>
-      <button class="nav-btn" onclick="next()">Next →</button>
+      <button class="nav-btn" id="prevBtn">← Previous</button>
+      <button class="nav-btn" id="nextBtn">Next →</button>
     </div>
   </div>
 </div>
 
 <script>
-  let currentIndex = 0;
-  const slides = document.getElementById('slides');
-  const totalSlides = slides.children.length;
-  function updateSlide() {
-    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-  }
-  function next() {
-    currentIndex = (currentIndex + 1) % totalSlides;
-    updateSlide();
-  }
-  function prev() {
-    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-    updateSlide();
-  }
+  (function(){
+    const slidesTrack = document.getElementById('slides');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
+    let currentIndex = 0;
+    let slideWidth = 0;
+
+    // build dots
+    slides.forEach((_, i) => {
+      const d = document.createElement('div');
+      d.className = 'dot' + (i===0 ? ' active' : '');
+      d.dataset.index = i;
+      d.addEventListener('click', ()=> { currentIndex = i; updateSlide(); });
+      dotsWrap.appendChild(d);
+    });
+
+    const dots = Array.from(dotsWrap.children);
+
+    function updateDots(){
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    }
+
+    function recalc(){
+      // measure
+      slideWidth = slides[0].getBoundingClientRect().width;
+      // set transform by px (more reliable when dragging)
+      slidesTrack.style.transition = 'none';
+      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+      // small timeout to restore transition for future moves
+      requestAnimationFrame(()=> requestAnimationFrame(()=> slidesTrack.style.transition = 'transform 0.4s ease'));
+    }
+
+    function updateSlide(){
+      slideWidth = slides[0].getBoundingClientRect().width;
+      slidesTrack.style.transition = 'transform 0.4s ease';
+      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+      updateDots();
+    }
+
+    // next/prev
+    function next(){
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide();
+    }
+    function prev(){
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlide();
+    }
+
+    nextBtn.addEventListener('click', next);
+    prevBtn.addEventListener('click', prev);
+
+    // keyboard support
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    // touch (mobile) dragging
+    let startX = 0;
+    let isDragging = false;
+    let animationFrameId = null;
+
+    function onTouchStart(e){
+      isDragging = true;
+      startX = (e.touches ? e.touches[0].clientX : e.clientX);
+      slidesTrack.style.transition = 'none';
+    }
+    function onTouchMove(e){
+      if(!isDragging) return;
+      const currentX = (e.touches ? e.touches[0].clientX : e.clientX);
+      const diff = currentX - startX;
+      // translate by px
+      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth + diff}px)`;
+    }
+    function onTouchEnd(e){
+      if(!isDragging) return;
+      isDragging = false;
+      const endX = (e.changedTouches ? e.changedTouches[0].clientX : (e.clientX || startX));
+      const diff = endX - startX;
+      const threshold = Math.min(50, slideWidth * 0.2); // 50px or 20% of slide
+      if(diff < -threshold && currentIndex < slides.length - 1){
+        currentIndex++;
+      } else if(diff > threshold && currentIndex > 0){
+        currentIndex--;
+      }
+      updateSlide();
+    }
+
+    // attach both touch and mouse for drag (mouse helps testing on desktop)
+    slidesTrack.addEventListener('touchstart', onTouchStart, {passive:true});
+    slidesTrack.addEventListener('touchmove', onTouchMove, {passive:true});
+    slidesTrack.addEventListener('touchend', onTouchEnd);
+
+    slidesTrack.addEventListener('mousedown', (e) => { e.preventDefault(); onTouchStart(e); });
+    window.addEventListener('mousemove', onTouchMove);
+    window.addEventListener('mouseup', onTouchEnd);
+
+    // recalc on resize
+    window.addEventListener('resize', recalc);
+
+    // initial setup after images load (so widths are correct)
+    let images = slidesTrack.querySelectorAll('img');
+    let loaded = 0;
+    images.forEach(img => {
+      if(img.complete) {
+        loaded++;
+      } else {
+        img.addEventListener('load', ()=> { loaded++; if(loaded === images.length) recalc(); });
+        img.addEventListener('error', ()=> { loaded++; if(loaded === images.length) recalc(); });
+      }
+    });
+    // fallback if images already loaded or no images
+    setTimeout(()=> recalc(), 100); // ensure recalc runs shortly after load
+  })();
 </script>
 
 </body>
