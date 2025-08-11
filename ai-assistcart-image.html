@@ -1,78 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI-AssistCart Gallery</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 40px;
-    }
+<meta charset="UTF-8">
+<title>AI-AssistCart Project Dashboard</title>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 40px;
+    color: #1f2937;
+  }
 
-    h2 {
-      color: #005eb8;
-    }
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 
-    .slider-container {
-      width: 80%;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-    }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+    max-width: 1200px;
+    margin: auto;
+  }
 
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 450px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+  /* Panel Styles */
+  .panel {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    padding: 24px;
+  }
 
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 12px;
+  }
 
-    .slides img {
-      width: 100%;
-      height: 450px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
+  .project-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #4b5563;
+    background: #f3f4f6;
+    padding: 14px 16px;
+    border-radius: 10px;
+  }
 
-    .navigation {
-      margin-top: 20px;
-    }
+  /* Buttons */
+  .dashboard-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 
-    .navigation button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      font-size: 16px;
-      background: #005eb8;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+  .action-btn {
+    background: #2563eb;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+  }
 
-    .back-home {
-      margin-top: 40px;
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #333;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-  </style>
+  .action-btn:hover {
+    background: #1e4fd7;
+  }
+
+  .action-btn img {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Tech Stack */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f9fafb;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+  }
+
+  .tech-item img {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Slider */
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+
+  .slider {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .slides img {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    background: #f3f4f6;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    gap: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .nav-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .nav-btn:hover {
+    background: #1e4fd7;
+  }
+
+  /* Back button */
+  .back-home {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 18px;
+    background: #374151;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .back-home:hover {
+    background: #1f2937;
+  }
+</style>
 </head>
 <body>
 
-  <h2>AI-AssistCart Gallery</h2>
+<h2>AI-AssistCart Project Dashboard</h2>
 
+<div class="container">
+  
+  <!-- Project Details -->
+  <div class="panel">
+    <div>
+      <div class="section-title">Project Overview</div>
+      <div class="project-description">
+        AI-AssistCart is an AI-powered e-commerce platform that automates product recommendations,
+        streamlines checkout, and provides advanced admin management tools to enhance online shopping.
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Quick Actions</div>
+      <div class="dashboard-actions">
+        <a href="docs/AI-AssistCart.pdf" target="_blank" class="action-btn">
+          <img src="icons/doc.png" alt=""> Documentation
+        </a>
+        <a href="https://github.com/YourUsername/AI-AssistCart" target="_blank" class="action-btn">
+          <img src="icons/code.png" alt=""> View Code
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Technologies Used</div>
+      <div class="tech-stack">
+        <div class="tech-item"><img src="tech/html.png" alt="HTML5"> HTML5</div>
+        <div class="tech-item"><img src="tech/css.png" alt="CSS3"> CSS3</div>
+        <div class="tech-item"><img src="tech/js.png" alt="JavaScript"> JavaScript</div>
+        <div class="tech-item"><img src="tech/python.png" alt="Python"> Python</div>
+        <div class="tech-item"><img src="tech/flask.png" alt="Flask"> Flask</div>
+        <div class="tech-item"><img src="tech/mysql.png" alt="MySQL"> MySQL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Image Slider -->
   <div class="slider-container">
     <div class="slider">
       <div class="slides" id="slides">
@@ -83,37 +230,37 @@
         <img src="images/admin.png" alt="AI AssistCart Demo 5">
         <img src="images/product.png" alt="AI AssistCart Demo 6">
         <img src="images/orders.png" alt="AI AssistCart Demo 7">
-        
       </div>
     </div>
-
     <div class="navigation">
-      <button onclick="prev()">Previous</button>
-      <button onclick="next()">Next</button>
+      <button class="nav-btn" onclick="prev()">Previous</button>
+      <button class="nav-btn" onclick="next()">Next</button>
     </div>
   </div>
 
-  <a href="index.html" class="back-home">← Back to Home</a>
+</div>
 
-  <script>
-    let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
+<a href="index.html" class="back-home">← Back to Home</a>
 
-    function updateSlide() {
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
+<script>
+  let currentIndex = 0;
+  const slides = document.getElementById('slides');
+  const totalSlides = slides.children.length;
 
-    function next() {
-      currentIndex = (currentIndex + 1) % totalSlides;
-      updateSlide();
-    }
+  function updateSlide() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+  }
 
-    function prev() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-      updateSlide();
-    }
-  </script>
+  function next() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlide();
+  }
+
+  function prev() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  }
+</script>
 
 </body>
 </html>
