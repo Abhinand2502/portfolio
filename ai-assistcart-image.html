@@ -178,25 +178,25 @@
 @media (max-width: 768px) {
   .container {
     display: flex;
-    flex-direction: column;
-    gap: 20px; /* spacing between blocks */
+    flex-direction: column-reverse; /* slider on top, panel below */
+    gap: 20px;
     width: 100%;
   }
 
   .slider {
     width: 100%;
-    height: auto; /* let height adjust naturally */
+    height: auto;
   }
 
   .slides img {
-    width: 100%; /* make image fill container */
-    height: auto; /* maintain aspect ratio */
+    width: 100%;
+    height: auto;
     object-fit: cover;
   }
 
   h2 {
     font-size: 22px;
-    text-align: center; /* optional for better look */
+    text-align: center;
   }
 }
 
