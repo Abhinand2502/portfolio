@@ -205,61 +205,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Technologies Used</title>
 <style>
-  body {
-    background-color: #111827; /* Dark background for contrast */
-    color: white;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
   .tech-stack {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
+    justify-content: center; /* Centered layout */
+    gap: 10px;
+    margin-top: 15px;
   }
 
   .tech-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #000; /* Black button */
-    padding: 10px 16px;
+    background-color: #f3f4f6;
+    padding: 8px 14px;
     border-radius: 25px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    border: 1px solid #1e3a8a; /* Blue border */
-    box-shadow: 0 2px 8px rgba(0, 0, 255, 0.3);
-    animation: float 3s ease-in-out infinite;
     transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
 
   .tech-item img {
-    width: 22px;
-    height: 22px;
-    filter: hue-rotate(200deg) saturate(200%); /* Make logos blue */
+    width: 20px;
+    height: 20px;
   }
 
   .tech-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 4px 15px rgba(0, 0, 255, 0.5);
-  }
-
-  /* Floating animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    background-color: #e5e7eb;
+    transform: scale(1.05);
   }
 
   /* Mobile-friendly adjustments */
   @media (max-width: 600px) {
     .tech-item {
       font-size: 13px;
-      padding: 8px 12px;
+      padding: 6px 12px;
     }
 
     .tech-item img {
