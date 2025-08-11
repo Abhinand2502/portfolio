@@ -26,6 +26,7 @@
     gap: 32px;
     max-width: 1200px;
     margin: auto;
+    align-items: start;
   }
 
   /* Panel Styles */
@@ -177,14 +178,24 @@
     background: #1f2937;
   }
 
-  /* MOBILE RESPONSIVE */
+  /* MOBILE RESPONSIVE FIX */
   @media (max-width: 768px) {
     body {
       padding: 20px;
     }
 
     .container {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Make description box first */
+    .panel {
+      order: 1;
+    }
+
+    .slider-container {
+      order: 2;
     }
 
     .slider {
@@ -200,7 +211,6 @@
     }
   }
 </style>
-
 </head>
 <body>
 
