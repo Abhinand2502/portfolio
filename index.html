@@ -52,22 +52,91 @@
   <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
               background-color: rgba(255, 255, 255, 0.3); z-index: 1;"></div>
 
-  <div style="position: relative; z-index: 2;">
-    <img src="assets/your-profile.jpg" alt="Profile" 
-     style="width: 160px; height: 160px; object-fit: contain; border-radius: 50%;
-            background-color: #fff; border: 5px solid #ddd; margin-bottom: 25px;" />
+<style>
+  .profile-container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
 
-    <h1 style="font-size: 36px; font-weight: 700; margin-bottom: 10px; color: #ffffff;">Abhinand Babu</h1>
-    <p style="font-size: 18px; color: #fffdfd;">🎓 B.Tech Graduate &nbsp; | &nbsp; 💻 Developer</p>
-  </div>
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 5px solid #ddd;
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    outline: none; /* Remove default focus outline */
+  }
+
+  /* Zoom up + glow on hover or focus */
+  .profile-pic:hover,
+  .profile-pic:focus {
+    transform: scale(1.1) translateY(-10px);
+    box-shadow: 0 0 25px #00bfff;
+  }
+
+  .profile-name {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffffff;
+    animation: glowText 3s ease-in-out infinite;
+  }
+
+  .profile-title {
+    font-size: 18px;
+    color: #fffdfd;
+  }
+
+  .emoji {
+    display: inline-block;
+    animation: bounceEmoji 2s ease-in-out infinite;
+  }
+
+  @keyframes glowText {
+    0%, 100% {
+      text-shadow: 0 0 5px #00bfff;
+      color: #ffffff;
+    }
+    50% {
+      text-shadow: 0 0 15px #00bfff;
+      color: #a0e8ff;
+    }
+  }
+
+  @keyframes bounceEmoji {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+</style>
+
+<div class="profile-container">
+  <img src="assets/your-profile.jpg" alt="Profile" class="profile-pic" tabindex="0" />
+
+  <h1 class="profile-name">
+    Abhinand Babu
+  </h1>
+  
+  <p class="profile-title">
+    <span class="emoji" style="animation-delay: 0s;">🎓</span> B.Tech Graduate &nbsp; | &nbsp; <span class="emoji" style="animation-delay: 0.4s;">💻</span> Developer
+  </p>
+</div>
+
 </section>
-
 <section id="about" class="section" style="background: #fff; color: #111; padding: 60px 20px; border-radius: 10px; margin: 40px auto; max-width: 1000px;">
   <h2 style="font-size: 32px; margin-bottom: 20px; color: #005eb8; text-align: center;">About Me</h2>
-  <p style="font-size: 16px; line-height: 1.6; color: #222;">I am a  B.Tech Computer Science Engineer with a strong foundation in software development and web
- technologies. Proficient in Python, Django, C, HTML, CSS, JavaScript and SQL. Passionate about
- building responsive and dynamic web applications, problem-solving, and continuous learning to
- create efficient and scalable solutions.</p>
+  <p style="font-size: 16px; line-height: 1.6; color: #222;">
+    I am a B.Tech graduate in Computer Science Engineering with a strong foundation in software development and web technologies. 
+    Skilled in Python, Django, C, HTML, CSS, JavaScript, and SQL, I am passionate about building responsive, dynamic web applications, solving problems, and continually learning to create efficient, scalable solutions.
+  </p>
 </section>
 
 <section id="skills" class="skills-section">
@@ -80,6 +149,7 @@
     <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
     <div class="skill-item"><i class="fab fa-react"></i> React</div>
     <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+    <div class="skill-item"><i class="fas fa-robot"></i> ML</div>
   </div>
 </section>
 
@@ -112,12 +182,18 @@
 </section>
 
 
-  <section id="resume" class="section" style="background: #fff; color: #111; padding: 60px 20px; border-radius: 10px; margin: 40px auto; max-width: 1000px;">
-    <h2 style="font-size: 32px; margin-bottom: 20px; color: #005eb8; text-align: center;">Resume</h2>
-    <iframe src="assets/resume.pdf" width="100%" height="600px" style="border: 2px solid #ccc; border-radius: 10px;"></iframe>
-<br><br>
-<a href="assets/resume.pdf" class="btn" download>Download Resume</a>
-  </section>
+  <section id="resume" class="resume-section">
+  <h2>Resume</h2>
+
+  <div class="resume-viewer">
+    <iframe src="assets/resume.pdf" title="Resume PDF"></iframe>
+  </div>
+
+  <a href="assets/resume.pdf" class="btn download-btn" download>
+    Download Resume
+  </a>
+</section>
+
 
 <footer class="site-footer">
   <div class="footer-icons">
