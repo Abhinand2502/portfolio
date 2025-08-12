@@ -114,87 +114,76 @@
   }
 
   /* PROJECT DESCRIPTION */
-  .project-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px var(--shadow-light);
-    text-align: center;
-    font-weight: 500;
-    user-select: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: default;
-  }
-  .project-description:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 18px var(--shadow-medium);
-  }
-  .project-description:active {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px var(--shadow-strong);
-  }
+/* Tech stack container with wrap and gap */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 700px;
+  margin: 30px auto 0;
+  padding: 0 10px;
+}
 
-  /* TECH STACK BADGES */
+/* Rectangular buttons with icon + text */
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  cursor: default;
+  border: none;
+  font-size: 1rem;
+  user-select: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.tech-item img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+  transition: filter 0.3s ease;
+}
+
+.tech-item:hover,
+.tech-item:focus {
+  background: linear-gradient(135deg, #1e40af, #60a5fa);
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
+  outline: none;
+  transform: scale(1.05);
+}
+
+.tech-item:hover img,
+.tech-item:focus img {
+  filter: drop-shadow(0 1px 3px rgba(255,255,255,0.9));
+}
+
+/* Responsive: 2 columns on small screens */
+@media (max-width: 480px) {
   .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    margin: 30px auto 0;
-    max-width: 700px;
-    padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 16px;
+    max-width: 320px;
+    padding: 0;
   }
   .tech-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #4f46e5, #3b82f6);
-    color: white;
-    font-weight: 600;
-    padding: 10px 24px;
-    border-radius: 9999px;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
-    user-select: none;
-    white-space: nowrap;
-    transition: background 0.3s ease, transform 0.25s ease;
-    cursor: default;
-    font-size: 1rem;
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 0.95rem;
   }
   .tech-item img {
     width: 22px;
     height: 22px;
-    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
-    transition: filter 0.3s ease;
   }
-  .tech-item:hover {
-    background: linear-gradient(135deg, #6366f1, #60a5fa);
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.6);
-  }
-  .tech-item:hover img {
-    filter: drop-shadow(0 1px 3px rgba(255,255,255,0.8));
-  }
-  @media (max-width: 480px) {
-    .tech-stack {
-      flex-direction: column;
-      max-width: 320px;
-      gap: 14px;
-      padding: 0;
-    }
-    .tech-item {
-      width: 100%;
-      justify-content: flex-start;
-      font-size: 0.95rem;
-      padding-left: 20px;
-    }
-    .tech-item img {
-      width: 20px;
-      height: 20px;
-    }
-  }
+}
+
 
   /* DASHBOARD ACTIONS */
   .dashboard-actions {
@@ -356,32 +345,34 @@
     </div>
 
     <!-- Tech Stack -->
-    <div class="tech-stack" aria-label="Technologies used in this project">
-      <div class="tech-item" title="HTML5">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" />
-        HTML
-      </div>
-      <div class="tech-item" title="JavaScript">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" />
-        JavaScript
-      </div>
-      <div class="tech-item" title="CSS3">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
-        CSS3
-      </div>
-      <div class="tech-item" title="AJAX">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="AJAX Icon" />
-        AJAX
-      </div>
-      <div class="tech-item" title="SQLite">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite Icon" />
-        SQLite
-      </div>
-      <div class="tech-item" title="Python">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" />
-        Python
-      </div>
-    </div>
+   <!-- Replace the existing tech stack div with this -->
+<div class="tech-stack" aria-label="Technologies used in this project">
+  <button type="button" class="tech-item" title="HTML5">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" />
+    HTML
+  </button>
+  <button type="button" class="tech-item" title="JavaScript">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" />
+    JavaScript
+  </button>
+  <button type="button" class="tech-item" title="CSS3">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
+    CSS3
+  </button>
+  <button type="button" class="tech-item" title="AJAX">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="AJAX Icon" />
+    AJAX
+  </button>
+  <button type="button" class="tech-item" title="SQLite">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite Icon" />
+    SQLite
+  </button>
+  <button type="button" class="tech-item" title="Python">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" />
+    Python
+  </button>
+</div>
+
 
     <div class="dashboard-actions">
       <a href="https://github.com/Abhinand2502/Ai-Assist-Cart" class="action-btn" target="_blank" rel="noopener noreferrer" aria-label="View project code on GitHub">
