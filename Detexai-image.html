@@ -330,6 +330,19 @@
   background: var(--primary, #2563eb);
   border-color: var(--primary, #2563eb);
 }
+.project-description {
+  background: #ffffff; /* white background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* subtle border */
+  border-radius: 8px; /* slightly rounded corners */
+  padding: 16px 20px; /* even spacing inside */
+  margin-top: 12px; /* space from element above */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* soft shadow */
+  line-height: 1.6; /* better readability */
+  font-size: 1rem;
+  color: #333;
+  max-width: 100%; /* keeps it responsive */
+  box-sizing: border-box; /* ensures padding doesn't affect width */
+}
 
 </style>
 </head>
@@ -349,8 +362,7 @@
   <section class="panel" aria-labelledby="project-desc-title">
     <h2 id="project-desc-title" class="section-title">Project Overview</h2>
     <div class="project-description" tabindex="0">
-      AI-AssistCart is an AI-powered e-commerce platform that automates product recommendations,
-      streamlines checkout, and provides advanced admin management tools to enhance online shopping.
+      DetexAI is an AI-powered system using YOLOv8 to detect and classify trash and objects in land and aquatic environments, enabling real-time identification for smarter, faster cleanup.
     </div>
 
     <!-- Tech Stack -->
@@ -368,10 +380,11 @@
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
     CSS3
   </button>
-  <button type="button" class="tech-item" title="AJAX">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="AJAX Icon" />
-    AJAX
-  </button>
+  <button type="button" class="tech-item" title="YOLOv8">
+  <img src="images/icon.png" alt="YOLOv8 Icon" />
+  YOLOv8
+</button>
+
   <button type="button" class="tech-item" title="SQLite">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite Icon" />
     SQLite
