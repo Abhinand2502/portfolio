@@ -21,80 +21,55 @@
     color: #1f2937;
     -webkit-font-smoothing:antialiased;
   }
-
-  .page-header {
-  background-color: #121212; /* Dark background */
-  color: #e0e0e0;            /* Light text */
+.page-header {
+  background: #1e293b; /* dark blue/gray */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: #fff;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 16px 32px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  padding: 10px 20px; /* vertical padding to create space */
   position: relative;
-  user-select: none;
 }
 
-/* Home button aligned left */
 .back-home {
-  position: absolute;
-  left: 32px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  color: #60a5fa;
   font-weight: 600;
-  font-size: 1rem;
-  color: #90caf9;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 1rem;
+  z-index: 2;
 }
 
 .back-home svg {
-  width: 20px;
-  height: 20px;
   fill: currentColor;
-  transition: transform 0.3s ease;
+  height: 20px; /* control icon size */
+  width: 20px;
 }
 
-.back-home:hover,
-.back-home:focus-visible {
-  color: #64b5f6;
-}
-
-.back-home:hover svg,
-.back-home:focus-visible svg {
-  transform: translateX(-5px);
-}
-
-/* Centered heading */
-.page-header h2 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 1.8rem;
+.page-header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.25rem;
   font-weight: 700;
   margin: 0;
-  text-align: center;
-  user-select: text;
-  border-bottom: 2px solid #64b5f6;
-  padding-bottom: 4px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  line-height: 1; /* prevent extra space */
 }
 
-/* Responsive: stack on small screens */
 @media (max-width: 600px) {
   .page-header {
-    flex-direction: column;
-    padding: 20px 16px;
+    justify-content: center;
   }
-
   .back-home {
-    position: static;
-    margin-bottom: 12px;
-  }
-
-  .page-header h2 {
-    border-bottom: 2px solid #64b5f6;
+    position: absolute;
+    left: 20px;
   }
 }
-
 
   /* Layout */
   .container{
@@ -350,17 +325,29 @@
 
 </style>
 </head>
-<body>
 
+<body>
 <header class="page-header">
-  <a href="index.html" class="back-home" aria-label="Back to Home">
+  <a class="back-home" href="index.html" aria-label="Back to Home">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
       <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3a1.5 1.5 0 0 0 1.5-1.5V7.793l-6.146-6.647z"/>
     </svg>
     Home
   </a>
-  <h2>AI-AssistCart Project Dashboard</h2>
+  <h1>AI AssistCart Project Dashboard</h1>
 </header>
+
+
+<header class="page-header">
+  <!-- Header content here -->
+</header>
+
+<!-- Add spacing between the header and the content below -->
+<div style="height: 24px;"></div>
+
+<main>
+  <!-- Main content here -->
+</main>
 
 
 <div class="container">
@@ -387,6 +374,7 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .tech-item {
@@ -401,9 +389,10 @@
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 0.6);
   cursor: default;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
   min-width: 100px;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .tech-item img {
@@ -419,20 +408,28 @@
   transform: translateY(-3px);
 }
 
-
-  /* Mobile-friendly adjustments */
-  @media (max-width: 600px) {
-    .tech-item {
-      font-size: 13px;
-      padding: 6px 12px;
-    }
-
-    .tech-item img {
-      width: 18px;
-      height: 18px;
-    }
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
+  .tech-stack {
+    max-width: 100%;
+    gap: 12px;
+    padding: 12px 15px;
   }
+
+  .tech-item {
+    font-size: 13px;
+    padding: 8px 14px;
+    min-width: 70px;
+    gap: 6px;
+  }
+
+  .tech-item img {
+    width: 18px;
+    height: 18px;
+  }
+}
 </style>
+
 </head>
 <body>
 
