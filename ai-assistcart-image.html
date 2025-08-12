@@ -30,11 +30,31 @@
     text-decoration:none;font-weight:600;
   }
 
-  h2{
-    text-align:center;
-    margin: 6px 0 26px;
-    font-size:28px;font-weight:700;color:#111827;
-  }
+  h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2563eb; /* vibrant blue */
+  text-align: center;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+  /* subtle underline using a gradient */
+  background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 3px;
+  transition: color 0.3s ease;
+}
+
+h2:hover {
+  color: #1e40af;
+  cursor: default;
+  background-size: 100% 6px;
+  letter-spacing: 0.07em;
+}
+
 
   /* Layout */
   .container{
@@ -72,23 +92,92 @@
 }
 
 .project-description {
-  background-color: #111;          /* Dark background */
-  color: #eee;                    /* Light text */
+  background-color: #fff;
+  color: #333;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   font-size: 1rem;
   max-width: 700px;
   margin: 0 auto;
   line-height: 1.5;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth animation */
+  cursor: pointer; /* show pointer on hover */
 }
 
-  .dashboard-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
-  .action-btn{ background:var(--primary); color:#fff; padding:10px 14px; border-radius:10px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; font-weight:600; }
-  .tech-stack{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
-  .tech-item{ background:#f9fafb; border:1px solid #e5e7eb; padding:8px 12px; border-radius:8px; display:flex; align-items:center; gap:8px; font-size:13px; color:#374151; }
+/* Zoom on hover */
+.project-description:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Zoom bigger on click */
+.project-description:active {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+
+  .dashboard-actions {
+  text-align: center;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  color: white;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 30px;
+  box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
+  text-decoration: none;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.05rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.action-btn:hover {
+  box-shadow: 0 10px 25px rgba(0, 204, 255, 0.8);
+  transform: translateY(-4px);
+}
+
+#docs-panel {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #111;
+  color: #eee;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.docs-hidden {
+  display: none;
+}
+
+.docs-content h3 {
+  color: #0a74da;
+  margin-bottom: 12px;
+}
+
+.docs-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.docs-content li {
+  margin: 8px 0;
+  padding-left: 10px;
+}
 
   /* Slider */
   .slider-container{
@@ -103,7 +192,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    background:#f3f4f6;
+    background:#ffffff;
     position:relative;
     overflow:hidden;
   }
@@ -133,23 +222,42 @@
     display:block;
   }
 
-  .navigation{
-    display:flex;
-    justify-content:space-between;
-    padding:12px 16px;
-    border-top:1px solid #e5e7eb;
-  }
-  .nav-btn{
-    background:var(--primary);
-    color:#fff;
-    border:none;
-    padding:8px 14px;
-    border-radius:8px;
-    font-weight:600;
-    cursor:pointer;
-  }
+ .navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 24px;          /* a bit more padding for breathing room */
+  border-top: 1px solid #e5e7eb;
+  background-color: #fff;      /* white background for contrast */
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); /* subtle shadow on top */
+  border-radius: 0 0 12px 12px; /* rounded bottom corners */
+}
 
-  .nav-btn:active{ transform:translateY(1px); }
+.nav-btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;           /* slightly bigger clickable area */
+  border-radius: 12px;          /* more rounded, softer corners */
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12); /* subtle shadow for depth */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+  user-select: none;
+}
+
+.nav-btn:hover,
+.nav-btn:focus {
+  background-color: #2563eb;    /* a bit darker on hover */
+  box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.nav-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
 
   /* small indicator dots */
   .dots{
@@ -204,14 +312,18 @@
 </head>
 <body>
 
-<a class="back-home" href="index.html">← Back to Home</a>
+<a class="back-home" href="index.html" style="display: inline-flex; align-items: center; gap: 6px;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+    <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3a1.5 1.5 0 0 0 1.5-1.5V7.793l-6.146-6.647z"/>
+  </svg>
+</a>
+
 <h2>AI-AssistCart Project Dashboard</h2>
 
 <div class="container">
   <!-- Project Details (keeps being first in DOM, so on mobile it will appear on top) -->
   <div class="panel">
     <div>
-      <div class="section-title">Project Overview</div>
       <div class="project-description">
         AI-AssistCart is an AI-powered e-commerce platform that automates product recommendations,
         streamlines checkout, and provides advanced admin management tools to enhance online shopping.
@@ -312,12 +424,19 @@
 
 
     <div>
-      <div class="section-title">Quick Actions</div>
-      <div class="dashboard-actions">
-        <a class="action-btn" href="docs/AI-AssistCart.pdf" target="_blank">📄 Documentation</a>
-        <a class="action-btn" href="https://github.com/YourUsername/AI-AssistCart" target="_blank">💻 View Code</a>
-      </div>
-    </div>
+  <div class="dashboard-actions">
+    <a class="action-btn" href="https://github.com/Abhinand2502/Ai-Assist-Cart" target="_blank">💻 View Code</a>
+  </div>
+</div>
+
+<script>
+  function toggleDocs(event) {
+    event.preventDefault(); // Prevent page jump
+    const panel = document.getElementById('docs-panel');
+    panel.classList.toggle('docs-hidden');
+  }
+</script>
+
 
   </div>
 
