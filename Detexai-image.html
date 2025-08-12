@@ -1,126 +1,542 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>DetexAI Gallery</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 40px;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI-AssistCart Project Dashboard</title>
 
-    h2 {
-      color: #005eb8;
-    }
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg: #f9fafb;
+    --card: #fff;
+    --text-primary: #1f2937;
+    --text-muted: #4b5563;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-strong: rgba(0, 0, 0, 0.3);
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    padding: 20px;
+    background-color: var(--bg);
+    font-family: var(--font-family);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* HEADER */
+  header.page-header {
+    position: sticky;
+    top: 0;
+    background: #1e293b;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 20px;
+    box-shadow: 0 4px 10px var(--shadow-strong);
+    z-index: 1000;
+  }
+
+  header.page-header h1 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    user-select: none;
+    margin: 0;
+  }
+
+  a.back-home {
+    position: absolute;
+    left: 20px;
+    color: #60a5fa;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+  a.back-home:hover,
+  a.back-home:focus {
+    color: #93c5fd;
+    outline: none;
+  }
+  a.back-home svg {
+    fill: currentColor;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* SPACING */
+  main {
+    max-width: 1200px;
+    margin: 30px auto 0;
+    padding: 0 20px;
+  }
+
+  /* CONTAINER for two columns */
+  .container {
+    display: flex;
+    gap: 32px;
+    align-items: stretch;
+    min-height: 420px;
+  }
+
+  /* Responsive stacking */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      min-height: auto;
+      gap: 24px;
+    }
+  }
+
+  /* PANELS */
+  .panel {
+    flex: 1;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px var(--shadow-light);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* PROJECT DESCRIPTION */
+/* Tech stack container with wrap and gap */
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 700px;
+  margin: 30px auto 0;
+  padding: 0 10px;
+}
+
+/* Rectangular buttons with icon + text */
+.tech-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #020202, #000000);
+  color: white;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  cursor: default;
+  border: none;
+  font-size: 1rem;
+  user-select: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.tech-item img {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+  transition: filter 0.3s ease;
+}
+
+.tech-item:hover,
+.tech-item:focus {
+  background: linear-gradient(135deg, #1e40af, #60a5fa);
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
+  outline: none;
+  transform: scale(1.05);
+}
+
+.tech-item:hover img,
+.tech-item:focus img {
+  filter: drop-shadow(0 1px 3px rgba(255,255,255,0.9));
+}
+
+/* Responsive: 2 columns on small screens */
+@media (max-width: 480px) {
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 16px;
+    max-width: 320px;
+    padding: 0;
+  }
+  .tech-item {
+    justify-content: flex-start;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 0.95rem;
+  }
+  .tech-item img {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+
+  /* DASHBOARD ACTIONS */
+  .dashboard-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: linear-gradient(135deg, #0066ff, #0c3946);
+    color: white;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 30px;
+    box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: var(--font-family);
+  }
+  .action-btn:hover,
+  .action-btn:focus {
+    box-shadow: 0 10px 25px rgba(0, 204, 255, 0.8);
+    transform: translateY(-4px);
+    outline: none;
+  }
+
+  /* SLIDER CONTAINER */
+  .slider-container {
+    flex: 1;
+    background: var(--card);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 420px;
+  }
+  @media (max-width: 768px) {
     .slider-container {
-      width: 80%;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
+      height: 300px;
+      min-height: auto;
     }
+  }
 
-    .slider {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 450px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
+  /* SLIDER */
+  .slider {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .slides {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    will-change: transform;
+    user-select: none;
+  }
+  .slide {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+  .slide img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    user-select: none;
+  }
 
-    .slides {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
+  /* NAVIGATION */
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-top: 1px solid #e5e7eb;
+    background-color: #fff;
+    box-shadow: 0 -2px 6px var(--shadow-light);
+    border-radius: 0 0 12px 12px;
+  }
+  .nav-btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
+    user-select: none;
+  }
+  .nav-btn:hover,
+  .nav-btn:focus {
+    background-color: var(--primary-hover);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+    outline: none;
+    transform: translateY(-2px);
+  }
+  .nav-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px var(--shadow-strong);
+  }
 
-    .slides img {
-      width: 100%;
-      height: 450px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
+  /* DOTS */
+ .dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 5;
+}
 
-    .navigation {
-      margin-top: 20px;
-    }
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-    .navigation button {
-      padding: 10px 20px;
-      margin: 0 10px;
-      font-size: 16px;
-      background: #005eb8;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
+.dot:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
 
-    .back-home {
-      margin-top: 40px;
-      display: inline-block;
-      padding: 12px 24px;
-      background-color: #333;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-  </style>
+.dot.active {
+  background: var(--primary, #2563eb);
+  border-color: var(--primary, #2563eb);
+}
+
+</style>
 </head>
+
 <body>
+<header class="page-header" role="banner">
+  <a href="index.html" class="back-home" aria-label="Back to Home">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" >
+      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3a1.5 1.5 0 0 0 1.5-1.5V7.793l-6.146-6.647z"/>
+    </svg>
+  </a>
+  <h1>DetexAI</h1>
+</header>
 
-  <h2>DetexAI Gallery</h2>
+<main role="main" class="container" aria-label="Project Dashboard">
+  <!-- Project Panel -->
+  <section class="panel" aria-labelledby="project-desc-title">
+    <h2 id="project-desc-title" class="section-title">Project Overview</h2>
+    <div class="project-description" tabindex="0">
+      AI-AssistCart is an AI-powered e-commerce platform that automates product recommendations,
+      streamlines checkout, and provides advanced admin management tools to enhance online shopping.
+    </div>
 
-  <div class="slider-container">
-    <div class="slider">
-      <div class="slides" id="slides">
-        <img src="images/TLOGIN (1).png" alt="AI AssistCart Demo 1">
-        <img src="images/THOME.png" alt="AI AssistCart Demo 2">
-        <img src="images/TPROF.png" alt="AI AssistCart Demo 3">
-        <img src="images/TUPLOAD.png" alt="AI AssistCart Demo 4">
-        <img src="images/TRESULT.png" alt="AI AssistCart Demo 5">
-        <img src="images/TRESULT1.png" alt="AI AssistCart Demo 6">
-        <img src="images/THIST.png" alt="AI AssistCart Demo 7">
-        <img src="images/THIST2.png" alt="AI AssistCart Demo 8">
-        <img src="images/TCOM.png" alt="AI AssistCart Demo 9">
-        <img src="images/ALOG.png" alt="AI AssistCart Demo 10">
-        <img src="images/AHOME.png" alt="AI AssistCart Demo 11">
-        <img src="images/AUSER.png" alt="AI AssistCart Demo 12">
-        <img src="images/AHIST.png" alt="AI AssistCart Demo 13">
-        <img src="images/ACOMP.png" alt="AI AssistCart Demo 14">
-        
+    <!-- Tech Stack -->
+   <!-- Replace the existing tech stack div with this -->
+<div class="tech-stack" aria-label="Technologies used in this project">
+  <button type="button" class="tech-item" title="HTML5">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" />
+    HTML
+  </button>
+  <button type="button" class="tech-item" title="JavaScript">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" />
+    JavaScript
+  </button>
+  <button type="button" class="tech-item" title="CSS3">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
+    CSS3
+  </button>
+  <button type="button" class="tech-item" title="AJAX">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg" alt="AJAX Icon" />
+    AJAX
+  </button>
+  <button type="button" class="tech-item" title="SQLite">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite Icon" />
+    SQLite
+  </button>
+  <button type="button" class="tech-item" title="Python">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" />
+    Python
+  </button>
+</div>
+
+
+    <div class="dashboard-actions">
+      <a href="https://github.com/Abhinand2502/DetexAI" class="action-btn" target="_blank" rel="noopener noreferrer" aria-label="View project code on GitHub">
+        💻 View Code
+      </a>
+    </div>
+  </section>
+
+  <!-- Slider Panel -->
+  <section class="slider-container" aria-label="Project screenshot slider">
+    <div class="slider" id="slider">
+      <div class="slides" id="slides" aria-live="polite" aria-atomic="true">
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 1">
+          <img src="images/TLOGIN (1).png" alt="Screenshot showing login page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 2">
+          <img src="images/THOME.png" alt="Screenshot showing signup page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 3">
+          <img src="images/TPROF.png" alt="Screenshot showing home page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 4">
+          <img src="images/TUPLOAD.png" alt="Screenshot showing cash or payment page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 5">
+          <img src="images/TRESULT.png" alt="Screenshot showing admin dashboard of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 6">
+          <img src="images/TRESULT1.png" alt="Screenshot showing product page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/THIST.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/THIST2.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/TCOM.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/ALOG.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/AHOME.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/AUSER.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/AHIST.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
+        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
+          <img src="images/ACOMP.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
+        </div>
       </div>
+
+      <div class="dots" id="dots" aria-hidden="true"></div>
     </div>
 
-    <div class="navigation">
-      <button onclick="prev()">Previous</button>
-      <button onclick="next()">Next</button>
-    </div>
-  </div>
+    <nav class="navigation" aria-label="Slider navigation">
+      <button class="nav-btn" id="prevBtn" aria-label="Previous slide">← Previous</button>
+      <button class="nav-btn" id="nextBtn" aria-label="Next slide">Next →</button>
+    </nav>
+  </section>
+</main>
 
-  <a href="index.html" class="back-home">← Back to Home</a>
-
-  <script>
+<script>
+  (function () {
+    const slidesTrack = document.getElementById('slides');
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsWrap = document.getElementById('dots');
     let currentIndex = 0;
-    const slides = document.getElementById('slides');
-    const totalSlides = slides.children.length;
+    let slideWidth = 0;
+
+    // Build dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.dataset.index = i;
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateSlide();
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsWrap.children);
+
+    function updateDots() {
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    }
+
+    function recalc() {
+      slideWidth = slides[0].getBoundingClientRect().width;
+      slidesTrack.style.transition = 'none';
+      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+      setTimeout(() => slidesTrack.style.transition = 'transform 0.4s ease');
+    }
 
     function updateSlide() {
-      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+      updateDots();
     }
 
-    function next() {
-      currentIndex = (currentIndex + 1) % totalSlides;
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       updateSlide();
-    }
+    });
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlide();
+    });
 
-    function prev() {
-      currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    window.addEventListener('resize', () => {
+      recalc();
+    });
+
+    // Initialize
+    recalc();
+
+    // Optional: swipe support for touch devices
+    let startX = 0;
+    let isDragging = false;
+
+    slidesTrack.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      slidesTrack.style.transition = 'none';
+    });
+    slidesTrack.addEventListener('touchmove', e => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const deltaX = currentX - startX;
+      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth + -deltaX}px)`;
+    });
+    slidesTrack.addEventListener('touchend', e => {
+      isDragging = false;
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (diff > 50) {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      } else if (diff < -50) {
+        currentIndex = (currentIndex + 1) % slides.length;
+      }
+      slidesTrack.style.transition = 'transform 0.4s ease';
       updateSlide();
-    }
-  </script>
+    });
+  })();
+</script>
 
 </body>
 </html>
+
+        
