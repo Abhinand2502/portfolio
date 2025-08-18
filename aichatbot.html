@@ -150,27 +150,33 @@
   .tech-stack{
     display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
   }
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;   /* Allow wrapping on smaller screens */
+  gap: 12px;         /* Space between each tag (both row & column) */
+}
+
 .tech-tag {
   background: #000000;   /* Black background */
   color: #ffffff;        /* White text */
   font-weight: 600;
-  font-size: 0.85rem;    
-  padding: 8px 16px;     /* More breathing room */
+  font-size: 0.85rem;
+  padding: 8px 16px;
   border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 10px;             /* Extra space between logo + text */
+  gap: 10px;             /* Space between logo & text */
   white-space: nowrap;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tech-tag img {
-  width: 18px;           /* Keep same logo size */
+  width: 18px;
   height: 18px;
   object-fit: contain;
   background: #111111;   /* Background only behind logo */
   border-radius: 4px;
-  padding: 3px;          /* Slightly more space inside logo box */
+  padding: 3px;
 }
 
 /* Hover zoom */
@@ -179,6 +185,7 @@
   background: #111111;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
+
 
 
 
@@ -258,7 +265,7 @@
     <img src="images/css.png" alt="CSS Logo"> CSS
   </span>
   <span class="tech-tag">
-    <img src="images/java.png" alt="JavaScript Logo">JS
+    <img src="images/java.png" alt="JavaScript Logo">JavaScript
   </span>
   <span class="tech-tag">
     <img src="images/COHERE.png" alt="Cohere Logo"> Cohere API
