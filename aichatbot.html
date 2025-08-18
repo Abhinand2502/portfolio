@@ -152,38 +152,38 @@
   }
 .tech-stack {
   display: flex;
-  flex-wrap: wrap;   /* Allow wrapping on smaller screens */
-  gap: 12px;         /* Space between each tag (both row & column) */
+  flex-wrap: wrap;   
+  gap: 12px;         /* Keep same spacing */
 }
 
 .tech-tag {
-  background: #000000;   /* Black background */
-  color: #ffffff;        /* White text */
+  background: #000000;
+  color: #ffffff;
   font-weight: 600;
-  font-size: 0.85rem;
-  padding: 8px 16px;
-  border-radius: 8px;
+  font-size: 0.75rem;     /* Smaller text */
+  padding: 5px 10px;      /* Reduced padding */
+  border-radius: 6px;
   display: flex;
   align-items: center;
-  gap: 10px;             /* Space between logo & text */
+  gap: 6px;               /* Space between logo & text */
   white-space: nowrap;
   transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tech-tag img {
-  width: 18px;
-  height: 18px;
+  width: 14px;            /* Smaller logos */
+  height: 14px;
   object-fit: contain;
-  background: #111111;   /* Background only behind logo */
+  background: #111111;
   border-radius: 4px;
-  padding: 3px;
+  padding: 2px;
 }
 
 /* Hover zoom */
 .tech-tag:hover {
-  transform: scale(1.15);
+  transform: scale(1.12); /* Slight zoom */
   background: #111111;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
 }
 
 
