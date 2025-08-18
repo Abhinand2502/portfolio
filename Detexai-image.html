@@ -3,553 +3,426 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI-AssistCart Project Dashboard</title>
+<title>DetexAI</title>
 
 <style>
-  :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg: #f9fafb;
-    --card: #fff;
-    --text-primary: #1f2937;
-    --text-muted: #4b5563;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
-    --shadow-strong: rgba(0, 0, 0, 0.3);
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  :root{
+    --header-bg:#000000;
+    --card-bg:#fff;
+    --page-bg:#f9fafb;
+    --shadow:0 6px 20px rgba(0,0,0,.08);
   }
 
-  /* Reset & base */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    padding: 20px;
-    background-color: var(--bg);
-    font-family: var(--font-family);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Base */
+  body{
+    margin:0;
+    font-family:"Segoe UI", Tahoma, sans-serif;
+    background:var(--page-bg);
   }
 
-  /* HEADER */
-  header.page-header {
-    position: sticky;
-    top: 0;
-    background: #1e293b;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 20px;
-    box-shadow: 0 4px 10px var(--shadow-strong);
-    z-index: 1000;
-  }
-
-  header.page-header h1 {
-    font-weight: 700;
-    font-size: 1.5rem;
-    user-select: none;
-    margin: 0;
-  }
-
-  a.back-home {
-    position: absolute;
-    left: 20px;
-    color: #60a5fa;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  a.back-home:hover,
-  a.back-home:focus {
-    color: #93c5fd;
-    outline: none;
-  }
-  a.back-home svg {
-    fill: currentColor;
-    width: 20px;
-    height: 20px;
-  }
-
-  /* SPACING */
-  main {
-    max-width: 1200px;
-    margin: 30px auto 0;
-    padding: 0 20px;
-  }
-
-  /* CONTAINER for two columns */
-  .container {
-    display: flex;
-    gap: 32px;
-    align-items: stretch;
-    min-height: 420px;
-  }
-
-  /* Responsive stacking */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      min-height: auto;
-      gap: 24px;
-    }
-  }
-
-  /* PANELS */
-  .panel {
-    flex: 1;
-    background: var(--card);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px var(--shadow-light);
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  /* PROJECT DESCRIPTION */
-/* Tech stack container with wrap and gap */
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  max-width: 700px;
-  margin: 30px auto 0;
-  padding: 0 10px;
-}
-
-/* Rectangular buttons with icon + text */
-.tech-item {
+  .home-btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #020202, #000000);
-  color: white;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-  cursor: default;
-  border: none;
-  font-size: 1rem;
-  user-select: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: #000;       /* button color */
+  color: #fff;            /* icon color */
+  font-size: 22px;
+  border-radius: 50%;     /* makes it a circle */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: fixed;        /* floating bottom-right */
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
 
-.tech-item img {
-  width: 24px;
-  height: 24px;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
-  transition: filter 0.3s ease;
+.home-btn:hover {
+  background: #007bff;    /* blue on hover */
+  transform: scale(1.15); /* zoom effect */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
 
-.tech-item:hover,
-.tech-item:focus {
-  background: linear-gradient(135deg, #1e40af, #60a5fa);
-  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
-  outline: none;
-  transform: scale(1.05);
-}
+  /* Top header (kept) */
+  .top-header{
+    background:var(--header-bg);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .top-header a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+  }
+  .top-header a:hover{ text-decoration:underline; }
 
-.tech-item:hover img,
-.tech-item:focus img {
-  filter: drop-shadow(0 1px 3px rgba(255,255,255,0.9));
-}
-
-/* Responsive: 2 columns on small screens */
-@media (max-width: 480px) {
-  .tech-stack {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px 16px;
-    max-width: 320px;
-    padding: 0;
+  /* Card wrapper */
+  .wrapper{
+    display:flex;
+    justify-content:center;
+    padding:30px 15px;
   }
-  .tech-item {
-    justify-content: flex-start;
-    width: 100%;
-    padding-left: 20px;
-    font-size: 0.95rem;
-  }
-  .tech-item img {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-
-  /* DASHBOARD ACTIONS */
-  .dashboard-actions {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .action-btn {
-    background: linear-gradient(135deg, #0066ff, #0c3946);
-    color: white;
-    font-weight: 700;
-    padding: 14px 32px;
-    border-radius: 30px;
-    box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
-    text-decoration: none;
-    font-size: 1.05rem;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    font-family: var(--font-family);
-  }
-  .action-btn:hover,
-  .action-btn:focus {
-    box-shadow: 0 10px 25px rgba(0, 204, 255, 0.8);
-    transform: translateY(-4px);
-    outline: none;
+  .project-card{
+    background:var(--card-bg);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    max-width:1100px;
+    width:100%;
+    overflow:hidden;
   }
 
-  /* SLIDER CONTAINER */
-  .slider-container {
-    flex: 1;
-    background: var(--card);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px var(--shadow-light);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    min-height: 420px;
-  }
-  @media (max-width: 768px) {
-    .slider-container {
-      height: 300px;
-      min-height: auto;
-    }
+  /* Slider header (black bg only here) */
+  .project-header{
+    position:relative;
+    overflow:hidden;
+    background:#000; /* black only for slider area */
   }
 
-  /* SLIDER */
-  .slider {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    position: relative;
-    overflow: hidden;
-  }
-  .slides {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    will-change: transform;
-    user-select: none;
-  }
-  .slide {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    box-sizing: border-box;
-  }
-  .slide img {
-    width: 100%;
-    max-width: 900px;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
-    user-select: none;
+  .project-slider{
+    position:relative;
+    width:100%;
+    height:450px;       /* desktop height */
+    background:#000;
   }
 
-  /* NAVIGATION */
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 24px;
-    border-top: 1px solid #e5e7eb;
-    background-color: #fff;
-    box-shadow: 0 -2px 6px var(--shadow-light);
-    border-radius: 0 0 12px 12px;
-  }
-  .nav-btn {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px var(--shadow-medium);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
-    user-select: none;
-  }
-  .nav-btn:hover,
-  .nav-btn:focus {
-    background-color: var(--primary-hover);
-    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
-    outline: none;
-    transform: translateY(-2px);
-  }
-  .nav-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px var(--shadow-strong);
+  /* Stack slides on top of each other */
+  .project-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;     /* keep aspect ratio */
+    opacity:0;              /* hidden by default */
+    transform:scale(1.02);  /* slight in-scale for “appear” */
+    transition:
+      opacity 480ms ease,
+      transform 650ms ease;
+    will-change: opacity, transform;
   }
 
-  /* DOTS */
- .dots {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Visible slide */
+  .project-slider img.active{
+    opacity:1;
+    transform:scale(1);     /* settle to 1 */
+  }
+
+  /* Zoom-out + fade to black */
+  .project-slider img.out{
+    opacity:0 !important;
+    transform:scale(0.92) !important; /* zoom out */
+    transition:
+      opacity 450ms ease,
+      transform 550ms ease;
+  }
+
+  /* Overlay bits */
+  .status-badge{
+    position:absolute;
+    top:14px; right:14px;
+    background:#16a34a; color:#fff;
+    font-weight:600; font-size:.9rem;
+    padding:6px 14px; border-radius:20px;
+    z-index:2;
+  }
+  .project-header h2{
+    position:absolute; left:20px; bottom:20px;
+    color:#fff; z-index:2;
+    font-size:1.8rem; font-weight:700;
+    text-shadow:0 3px 6px rgba(0,0,0,.6);
+    margin:0;
+  }
+
+  /* Content */
+  .project-content{ padding:20px; }
+  .project-meta {
   display: flex;
-  gap: 8px;
-  z-index: 5;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.dot:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
-}
-
-.dot.active {
-  background: var(--primary, #2563eb);
-  border-color: var(--primary, #2563eb);
+  justify-content: space-between; /* one left, one right */
+  align-items: center;
+  font-size: 0.99rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 12px;
+  width: 100%;
+  flex-wrap: nowrap; /* prevent wrapping to next line */
 }
 .project-description {
-  background: #ffffff; /* white background */
-  border: 1px solid rgba(0, 0, 0, 0.1); /* subtle border */
-  border-radius: 8px; /* slightly rounded corners */
-  padding: 16px 20px; /* even spacing inside */
-  margin-top: 12px; /* space from element above */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* soft shadow */
-  line-height: 1.6; /* better readability */
-  font-size: 1rem;
-  color: #333;
-  max-width: 100%; /* keeps it responsive */
-  box-sizing: border-box; /* ensures padding doesn't affect width */
+  color: #000000;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 16px 0;
+  width: 100%;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  text-align: justify;
+  word-wrap: break-word;       /* breaks long words */
+  overflow-wrap: break-word;   /* modern support */
+  box-sizing: border-box;
 }
 
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .project-description {
+    font-size: 1.1rem;        /* slightly smaller for readability */
+    text-align: left;         /* avoid weird big spacing */
+    padding: 14px 16px;
+  }
+}
+
+  .tech-stack{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
+  }
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.tech-tag {
+  background: #000000;        /* Black background */
+  color: #ffffff;             /* White text */
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: 1px solid #222;     /* Subtle border */
+}
+
+.tech-tag img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  background: #111111;        /* Dark square behind logo */
+  border-radius: 4px;
+  padding: 2px;
+}
+
+/* Hover effect */
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.08);
+  background: #111111;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Mobile view → 2 columns */
+@media (max-width: 600px) {
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f9fafb;         /* Light background */
+  border: 1px solid #e5e7eb;   /* Soft border */
+  border-radius: 10px;
+  color: #111111;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-item::before {
+  content: "★";
+  color: #facc15;   /* Gold star */
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #ffffff;
+}
+
+
+  .action-btn {
+  display: inline-block;
+  background: #000000;     /* Solid black */
+  color: #ffffff;          /* White text */
+  font-weight: 600;
+  padding: 10px 22px;      /* Balanced spacing */
+  border-radius: 8px;      /* Matches tech-tag rounded corners */
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid #111;  /* Subtle border */
+}
+
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #111111;     /* Slightly lighter hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+  /* Mobile */
+  @media (max-width: 768px){
+    .project-slider{ height:260px; }
+    .project-header h2{ font-size:1.3rem; }
+    .project-meta{ flex-direction:column; gap:6px; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .project-slider img{ transition:none !important; }
+  }
 </style>
 </head>
-
 <body>
-<header class="page-header" role="banner">
-  <a href="index.html" class="back-home" aria-label="Back to Home">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" >
-      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3a1.5 1.5 0 0 0 1.5-1.5V7.793l-6.146-6.647z"/>
-    </svg>
-  </a>
-  <h1>DetexAI</h1>
-</header>
 
-<main role="main" class="container" aria-label="Project Dashboard">
-  <!-- Project Panel -->
-  <section class="panel" aria-labelledby="project-desc-title">
-    <h2 id="project-desc-title" class="section-title">Project Overview</h2>
-    <div class="project-description" tabindex="0">
-      DetexAI is an AI-powered system using YOLOv8 to detect and classify trash and objects in land and aquatic environments, enabling real-time identification for smarter, faster cleanup.
-    </div>
+<!-- Top Header -->
+<div class="top-header">
+<a href="index.html" class="home-link"><i class="fas fa-home"></i> Home</a>
 
-    <!-- Tech Stack -->
-   <!-- Replace the existing tech stack div with this -->
-<div class="tech-stack" aria-label="Technologies used in this project">
-  <button type="button" class="tech-item" title="HTML5">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" />
-    HTML
-  </button>
-  <button type="button" class="tech-item" title="JavaScript">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" />
-    JavaScript
-  </button>
-  <button type="button" class="tech-item" title="CSS3">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
-    CSS3
-  </button>
-  <button type="button" class="tech-item" title="YOLOv8">
-  <img src="images/icon.png" alt="YOLOv8 Icon" />
-  YOLOv8
-</button>
-
-  <button type="button" class="tech-item" title="SQLite">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite Icon" />
-    SQLite
-  </button>
-  <button type="button" class="tech-item" title="Python">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" />
-    Python
-  </button>
+  <span>DetexAI Project</span>
 </div>
 
+<div class="wrapper">
+  <div class="project-card">
+    <!-- Slider header -->
+    <div class="project-header">
+      <div class="project-slider" id="slider">
+        <img src="images/TLOGIN (1).png" alt="AI AssistCart Screenshot 1" class="active">
+        <img src="images/THOME.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/TPROF.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/TUPLOAD.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/TRESULT.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/TRESULT1.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/THIST.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/THIST2.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/TCOM.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/ALOG.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/AHOME.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/AUSER.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/AHIST.png" alt="AI AssistCart Screenshot 2">
+        <img src="images/ACOMP.png" alt="AI AssistCart Screenshot 2">
+      </div>
+      <div class="status-badge">Completed</div>
+      <h2>DetexAI – AI Trash Detection System</h2>
+    </div>
 
-    <div class="dashboard-actions">
-      <a href="https://github.com/Abhinand2502/DetexAI" class="action-btn" target="_blank" rel="noopener noreferrer" aria-label="View project code on GitHub">
+    <!-- Content -->
+    <div class="project-content">
+      <div class="project-meta">
+        <span>👁️ DetexAI</span>
+      </div>
+
+      <p class="project-description">
+      DetexAI is an AI-powered system using YOLOv8 to detect and classify trash and objects in land and aquatic environments, enabling real-time identification for smarter, faster cleanup.
+      </p>
+ <div class="tech-stack">
+  <span class="tech-tag">
+    <img src="images/python.png" alt="Python Logo">Python
+  </span>
+  <span class="tech-tag">
+    <img src="images/django.png" alt="Django Logo"> Django
+  </span>
+  <span class="tech-tag">
+    <img src="images/html.png" alt="HTML Logo"> HTML
+  </span>
+  <span class="tech-tag">
+    <img src="images/css.png" alt="CSS Logo"> CSS
+  </span>
+  <span class="tech-tag">
+    <img src="images/java.png" alt="JavaScript Logo">JavaScript
+  </span>
+  <span class="tech-tag">
+    <img src="images/icon.png" alt="Cohere Logo"> YoloV8
+  </span>
+  <span class="tech-tag">
+    <img src="images/icon.png" alt="Cohere Logo"> SQLite
+  </span>
+</div>
+
+      <div class="features">
+        <div class="feature-item">Real-time Trash Detection</div>
+        <div class="feature-item">High Accuracy</div>
+        <div class="feature-item">User-friendly Interface</div>
+        <div class="feature-item">Multi-class Classification</div>
+      </div>
+
+      <a href="https://github.com/Abhinand2502/DetexAI" target="_blank" class="action-btn">
         💻 View Code
       </a>
     </div>
-  </section>
-
-  <!-- Slider Panel -->
-  <section class="slider-container" aria-label="Project screenshot slider">
-    <div class="slider" id="slider">
-      <div class="slides" id="slides" aria-live="polite" aria-atomic="true">
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 1">
-          <img src="images/TLOGIN (1).png" alt="Screenshot showing login page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 2">
-          <img src="images/THOME.png" alt="Screenshot showing signup page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 3">
-          <img src="images/TPROF.png" alt="Screenshot showing home page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 4">
-          <img src="images/TUPLOAD.png" alt="Screenshot showing cash or payment page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 5">
-          <img src="images/TRESULT.png" alt="Screenshot showing admin dashboard of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 6">
-          <img src="images/TRESULT1.png" alt="Screenshot showing product page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/THIST.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/THIST2.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/TCOM.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/ALOG.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/AHOME.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/AUSER.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/AHIST.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 7">
-          <img src="images/ACOMP.png" alt="Screenshot showing orders page of AI AssistCart" loading="lazy" />
-        </div>
-      </div>
-
-      <div class="dots" id="dots" aria-hidden="true"></div>
-    </div>
-
-    <nav class="navigation" aria-label="Slider navigation">
-      <button class="nav-btn" id="prevBtn" aria-label="Previous slide">← Previous</button>
-      <button class="nav-btn" id="nextBtn" aria-label="Next slide">Next →</button>
-    </nav>
-  </section>
-</main>
+  </div>
+</div>
 
 <script>
-  (function () {
-    const slidesTrack = document.getElementById('slides');
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsWrap = document.getElementById('dots');
-    let currentIndex = 0;
-    let slideWidth = 0;
+  // Cinematic sequence:
+  // show -> zoom out & fade to BLACK -> next fades in
+  const slider = document.getElementById('slider');
+  const slides = Array.from(slider.querySelectorAll('img'));
 
-    // Build dots
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.dataset.index = i;
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateSlide();
+  let current = 0;
+  const SHOW_TIME   = 2600; // time each slide is fully visible
+  const OUT_TIME    = 550;  // zoom-out + fade duration (matches CSS)
+  const BLACK_GAP   = 200;  // pure black pause between slides
+  const CYCLE_TIME  = SHOW_TIME + OUT_TIME + BLACK_GAP;
+
+  function step(){
+    const curr = slides[current];
+    const nextIndex = (current + 1) % slides.length;
+    const next = slides[nextIndex];
+
+    // 1) Start zoom-out & fade of current
+    curr.classList.add('out');     // zoom out + fade
+    curr.classList.remove('active');
+
+    // 2) After OUT_TIME + BLACK_GAP, turn on next
+    setTimeout(() => {
+      // ensure EVERY slide except next is fully hidden
+      slides.forEach((img, i) => {
+        if(i !== nextIndex){ img.classList.remove('active'); img.classList.remove('out'); }
       });
-      dotsWrap.appendChild(dot);
-    });
+      next.classList.add('active'); // fade in (bg is black underneath)
+      current = nextIndex;
+    }, OUT_TIME + BLACK_GAP);
+  }
 
-    const dots = Array.from(dotsWrap.children);
+  // Kickoff: ensure first is active
+  slides.forEach((img, i) => img.classList.toggle('active', i === 0));
 
-    function updateDots() {
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-    }
+  // Run loop
+  setInterval(step, CYCLE_TIME);
 
-    function recalc() {
-      slideWidth = slides[0].getBoundingClientRect().width;
-      slidesTrack.style.transition = 'none';
-      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      setTimeout(() => slidesTrack.style.transition = 'transform 0.4s ease');
-    }
+  // Optional: pause on hover (desktop)
+  let paused = false, hoverTimer;
+  slider.addEventListener('mouseenter', () => { paused = true; });
+  slider.addEventListener('mouseleave', () => { paused = false; });
+  // Replace setInterval with manual loop so hover pause works cleanly
+  clearInterval(); // no-op placeholder
 
-    function updateSlide() {
-      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      updateDots();
-    }
-
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateSlide();
-    });
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateSlide();
-    });
-
-    window.addEventListener('resize', () => {
-      recalc();
-    });
-
-    // Initialize
-    recalc();
-
-    // Optional: swipe support for touch devices
-    let startX = 0;
-    let isDragging = false;
-
-    slidesTrack.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      slidesTrack.style.transition = 'none';
-    });
-    slidesTrack.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      const currentX = e.touches[0].clientX;
-      const deltaX = currentX - startX;
-      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth + -deltaX}px)`;
-    });
-    slidesTrack.addEventListener('touchend', e => {
-      isDragging = false;
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
-      if (diff > 50) {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      } else if (diff < -50) {
-        currentIndex = (currentIndex + 1) % slides.length;
-      }
-      slidesTrack.style.transition = 'transform 0.4s ease';
-      updateSlide();
-    });
+  // Manual loop honoring pause
+  (function loop(){
+    setTimeout(() => {
+      if(!paused) step();
+      loop();
+    }, CYCLE_TIME);
   })();
 </script>
 
 </body>
 </html>
-
-        
