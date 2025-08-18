@@ -148,15 +148,26 @@
   color: #000000;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin: 16px 0;              /* space above and below */
-  width: 100%;                 /* full width of parent */
-  padding: 16px 20px;          /* comfortable spacing inside */
+  margin: 16px 0;
+  width: 100%;
+  padding: 16px 20px;
   background: #f9f9f9;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   text-align: justify;
-  box-sizing: border-box;      /* makes sure padding doesn’t break width */
+  word-wrap: break-word;       /* breaks long words */
+  overflow-wrap: break-word;   /* modern support */
+  box-sizing: border-box;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .project-description {
+    font-size: 0.9rem;        /* slightly smaller for readability */
+    text-align: left;         /* avoid weird big spacing */
+    padding: 14px 16px;
+  }
 }
 
   .tech-stack{
