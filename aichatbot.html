@@ -1,519 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI-AssistCart Project Dashboard</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-AssistCart Project</title>
 <style>
-  :root {
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --bg: #f9fafb;
-    --card: #fff;
-    --text-primary: #1f2937;
-    --text-muted: #4b5563;
-    --shadow-light: rgba(0, 0, 0, 0.05);
-    --shadow-medium: rgba(0, 0, 0, 0.12);
-    --shadow-strong: rgba(0, 0, 0, 0.3);
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-
-  /* Reset & base */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
   body {
     margin: 0;
-    padding: 20px;
-    background-color: var(--bg);
-    font-family: var(--font-family);
-    color: var(--text-primary);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* HEADER */
-  header.page-header {
-    position: sticky;
-    top: 0;
-    background: #1e293b;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 20px;
-    box-shadow: 0 4px 10px var(--shadow-strong);
-    z-index: 1000;
-  }
-
-  header.page-header h1 {
-    font-weight: 700;
-    font-size: 1.5rem;
-    user-select: none;
-    margin: 0;
-  }
-
-  a.back-home {
-    position: absolute;
-    left: 20px;
-    color: #60a5fa;
-    font-weight: 600;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 1rem;
-    transition: color 0.3s ease;
-  }
-  a.back-home:hover,
-  a.back-home:focus {
-    color: #93c5fd;
-    outline: none;
-  }
-  a.back-home svg {
-    fill: currentColor;
-    width: 20px;
-    height: 20px;
-  }
-
-  /* SPACING */
-  main {
-    max-width: 1200px;
-    margin: 30px auto 0;
-    padding: 0 20px;
-  }
-
-  /* CONTAINER for two columns */
-  .container {
-    display: flex;
-    gap: 32px;
-    align-items: stretch;
-    min-height: 420px;
-  }
-
-  /* Responsive stacking */
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      min-height: auto;
-      gap: 24px;
-    }
-  }
-
-  /* PANELS */
-  .panel {
-    flex: 1;
-    background: var(--card);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px var(--shadow-light);
-    padding: 24px;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: #f9fafb;
+    padding: 0;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+  }
+
+  /* Header bar */
+  .top-header {
+    background: #0c3946;
+    color: #fff;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
   }
-
-  /* PROJECT DESCRIPTION */
-/* Tech stack container with wrap and gap */
-.tech-stack {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  max-width: 700px;
-  margin: 30px auto 0;
-  padding: 0 10px;
-}
-
-/* Rectangular buttons with icon + text */
-.tech-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #020202, #000000);
-  color: white;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-  cursor: default;
-  border: none;
-  font-size: 1rem;
-  user-select: none;
-  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
-}
-
-.tech-item img {
-  width: 24px;
-  height: 24px;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
-  transition: filter 0.3s ease;
-}
-
-.tech-item:hover,
-.tech-item:focus {
-  background: linear-gradient(135deg, #1e40af, #60a5fa);
-  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.6);
-  outline: none;
-  transform: scale(1.05);
-}
-
-.tech-item:hover img,
-.tech-item:focus img {
-  filter: drop-shadow(0 1px 3px rgba(255,255,255,0.9));
-}
-
-/* Responsive: 2 columns on small screens */
-@media (max-width: 480px) {
-  .tech-stack {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px 16px;
-    max-width: 320px;
-    padding: 0;
-  }
-  .tech-item {
-    justify-content: flex-start;
-    width: 100%;
-    padding-left: 20px;
-    font-size: 0.95rem;
-  }
-  .tech-item img {
-    width: 22px;
-    height: 22px;
-  }
-}
-
-
-  /* DASHBOARD ACTIONS */
-  .dashboard-actions {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .action-btn {
-    background: linear-gradient(135deg, #0066ff, #0c3946);
-    color: white;
-    font-weight: 700;
-    padding: 14px 32px;
-    border-radius: 30px;
-    box-shadow: 0 6px 15px rgba(0, 204, 255, 0.5);
+  .top-header a {
+    color: #fff;
     text-decoration: none;
-    font-size: 1.05rem;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1rem;
   }
-  .action-btn:hover,
-  .action-btn:focus {
-    box-shadow: 0 10px 25px rgba(0, 204, 255, 0.8);
-    transform: translateY(-4px);
-    outline: none;
+  .top-header a:hover {
+    text-decoration: underline;
   }
 
-  /* SLIDER CONTAINER */
-  .slider-container {
-    flex: 1;
-    background: var(--card);
-    border-radius: 16px;
-    box-shadow: 0 6px 20px var(--shadow-light);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    min-height: 420px;
-  }
-  @media (max-width: 768px) {
-    .slider-container {
-      height: 300px;
-      min-height: auto;
-    }
-  }
-
-  /* SLIDER */
-  .slider {
+  .wrapper {
     flex: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+  }
+
+  .project-card {
     background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    max-width: 1100px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Header with slider */
+  .project-header {
     position: relative;
     overflow: hidden;
   }
-  .slides {
-    display: flex;
+
+  .project-slider {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* use screen height for landscape */
+    min-height: 280px;
+    background: #000;
+  }
+  .project-slider img {
+    width: 100%;
     height: 100%;
-    width: 100%;
-    will-change: transform;
-    user-select: none;
-  }
-  .slide {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    box-sizing: border-box;
-  }
-  .slide img {
-    width: 100%;
-    max-width: 900px;
-    height: auto;
     object-fit: contain;
-    border-radius: 8px;
-    display: block;
-    user-select: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+  .project-slider img.active {
+    opacity: 1;
+    transform: scale(1.02); /* subtle zoom effect */
   }
 
-  /* NAVIGATION */
-  .navigation {
+  .status-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #16a34a;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    z-index: 5;
+  }
+
+  .project-header h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.6);
+    z-index: 5;
+  }
+
+  /* Content */
+  .project-content {
+    padding: 24px;
+  }
+
+  .project-meta {
     display: flex;
     justify-content: space-between;
-    padding: 12px 24px;
-    border-top: 1px solid #e5e7eb;
-    background-color: #fff;
-    box-shadow: 0 -2px 6px var(--shadow-light);
-    border-radius: 0 0 12px 12px;
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
   }
-  .nav-btn {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-weight: 700;
+
+  .project-description {
+    color: #374151;
+    line-height: 1.6;
+    margin-bottom: 18px;
     font-size: 1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px var(--shadow-medium);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease;
-    user-select: none;
-  }
-  .nav-btn:hover,
-  .nav-btn:focus {
-    background-color: var(--primary-hover);
-    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
-    outline: none;
-    transform: translateY(-2px);
-  }
-  .nav-btn:active {
-    transform: translateY(1px);
-    box-shadow: 0 2px 6px var(--shadow-strong);
   }
 
-  /* DOTS */
- .dots {
-  position: absolute;
-  bottom: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 5;
-}
+  /* Tech stack tags */
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+  .tech-tag {
+    background: #f1f5f9;
+    color: #111827;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
 
-.dot:hover {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
-}
+  /* Features grid */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #374151;
+  }
+  .feature-item::before {
+    content: "★";
+    color: #facc15;
+    margin-right: 8px;
+  }
 
-.dot.active {
-  background: var(--primary, #2563eb);
-  border-color: var(--primary, #2563eb);
-}
-.project-description {
-  background: #ffffff; /* white background */
-  border: 1px solid rgba(0, 0, 0, 0.1); /* subtle border */
-  border-radius: 8px; /* slightly rounded corners */
-  padding: 16px 20px; /* even spacing inside */
-  margin-top: 12px; /* space from element above */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* soft shadow */
-  line-height: 1.6; /* better readability */
-  font-size: 1rem;
-  color: #333;
-  max-width: 100%; /* keeps it responsive */
-  box-sizing: border-box; /* ensures padding doesn't affect width */
-}
+  /* Button */
+  .action-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #0066ff, #0c3946);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  .action-btn:hover {
+    box-shadow: 0 8px 18px rgba(0, 102, 255, 0.4);
+    transform: translateY(-3px);
+  }
 
+  /* Responsive */
+  @media (max-width: 768px) {
+    .project-slider { height: 45vh; }
+    .project-header h2 { font-size: 1.3rem; }
+    .project-content { padding: 16px; }
+  }
+  @media (max-width: 480px) {
+    .project-slider { height: 35vh; }
+    .project-header h2 { font-size: 1.1rem; }
+    .action-btn { padding: 10px 22px; font-size: 0.85rem; }
+  }
 </style>
 </head>
-
 <body>
-<header class="page-header" role="banner">
-  <a href="index.html" class="back-home" aria-label="Back to Home">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" focusable="false" >
-      <path d="M8.354 1.146a.5.5 0 0 0-.708 0L1 7.793V14.5A1.5 1.5 0 0 0 2.5 16h3A1.5 1.5 0 0 0 7 14.5V11h2v3.5A1.5 1.5 0 0 0 10.5 16h3a1.5 1.5 0 0 0 1.5-1.5V7.793l-6.146-6.647z"/>
-    </svg>
-  </a>
-  <h1>AI Chatbot</h1>
-</header>
 
-<main role="main" class="container" aria-label="Project Dashboard">
-  <!-- Project Panel -->
-  <section class="panel" aria-labelledby="project-desc-title">
-    <h2 id="project-desc-title" class="section-title">Project Overview</h2>
-    <div class="project-description" tabindex="0">
-      This chatbot is built with Django and supports chatting in both English and Malayalam. It uses a fuzzy matching algorithm with a local dataset, regex-based name extraction for personalization, and falls back to Cohere’s AI model for intelligent responses.
-    </div>
-
-    <!-- Tech Stack -->
-   <!-- Replace the existing tech stack div with this -->
-<div class="tech-stack" aria-label="Technologies used in this project">
-  <button type="button" class="tech-item" title="HTML5">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Icon" />
-    HTML
-  </button>
-  <button type="button" class="tech-item" title="JavaScript">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Icon" />
-    JavaScript
-  </button>
-  <button type="button" class="tech-item" title="CSS3">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Icon" />
-    CSS3
-  </button>
-  <button type="button" class="tech-item" title="NLP">
-  <img src="images/nlp.webp" alt="NLP Icon" />
-NLP
-</button>
-
-  <button type="button" class="tech-item" title="API">
-    <img src="images/COHERE.png" alt="API Icon" />
-    Cohere Api
-  </button>
-  <button type="button" class="tech-item" title="Python">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Icon" />
-    Python
-  </button>
+<!-- Top Header -->
+<div class="top-header">
+  <a href="index.html">← Back to Home</a>
+  <span>AI-AssistCart Project</span>
 </div>
 
+<div class="wrapper">
+  <div class="project-card">
+    <!-- Header with slider -->
+    <div class="project-header">
+      <div class="project-slider">
+        <img src="images/chat1 (1).png" alt="AI AssistCart Screenshot 1" class="active">
+        <img src="images/chat1 (2).png" alt="AI AssistCart Screenshot 2">
+        <img src="images/chat1 (3).png" alt="AI AssistCart Screenshot 3">
+      </div>
+      <div class="status-badge">Completed</div>
+      <h2>AI-AssistCart - Smart Chatbot Platform</h2>
+    </div>
 
-    <div class="dashboard-actions">
-      <a href="https://github.com/Abhinand2502/AiChatbot" class="action-btn" target="_blank" rel="noopener noreferrer" aria-label="View project code on GitHub">
+    <!-- Content -->
+    <div class="project-content">
+      <div class="project-meta">
+        <span>🤖 Chatbot Project</span>
+        <span>2024</span>
+      </div>
+
+      <p class="project-description">
+        AI-AssistCart is a chatbot built with Django that supports English and Malayalam. 
+        It uses fuzzy matching with a local dataset, regex-based personalization, and Cohere API 
+        for intelligent responses.
+      </p>
+
+      <!-- Tech stack -->
+      <div class="tech-stack">
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Django</span>
+        <span class="tech-tag">HTML</span>
+        <span class="tech-tag">CSS</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">Cohere API</span>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-item">Bilingual Chat (EN + ML)</div>
+        <div class="feature-item">User Engagement</div>
+        <div class="feature-item">Regex Name Extraction</div>
+        <div class="feature-item">Cohere API Integration</div>
+        <div class="feature-item">Responsive UI</div>
+      </div>
+
+      <!-- Button -->
+      <a href="https://github.com/Abhinand2502/AiChatbot" target="_blank" class="action-btn">
         💻 View Code
       </a>
     </div>
-  </section>
-
-  <!-- Slider Panel -->
-  <section class="slider-container" aria-label="Project screenshot slider">
-    <div class="slider" id="slider">
-      <div class="slides" id="slides" aria-live="polite" aria-atomic="true">
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 1">
-          <img src="images/chat1 (1).png" alt="Screenshot showing login page of AI AssistCart" loading="lazy" />
-        </div>
-        <div class="slide" role="group" aria-roledescription="slide" aria-label="AI AssistCart Demo 2">
-          <img src="images/chat1 (2).png" alt="Screenshot showing signup page of AI AssistCart" loading="lazy" />
-        </div>
-      </div>
-
-      <div class="dots" id="dots" aria-hidden="true"></div>
-    </div>
-
-    <nav class="navigation" aria-label="Slider navigation">
-      <button class="nav-btn" id="prevBtn" aria-label="Previous slide">← Previous</button>
-      <button class="nav-btn" id="nextBtn" aria-label="Next slide">Next →</button>
-    </nav>
-  </section>
-</main>
+  </div>
+</div>
 
 <script>
-  (function () {
-    const slidesTrack = document.getElementById('slides');
-    const slides = Array.from(document.querySelectorAll('.slide'));
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsWrap = document.getElementById('dots');
-    let currentIndex = 0;
-    let slideWidth = 0;
+  // Auto slider with smooth fade + zoom
+  const slides = document.querySelectorAll(".project-slider img");
+  let currentIndex = 0;
 
-    // Build dots
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.dataset.index = i;
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => {
-        currentIndex = i;
-        updateSlide();
-      });
-      dotsWrap.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsWrap.children);
-
-    function updateDots() {
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-    }
-
-    function recalc() {
-      slideWidth = slides[0].getBoundingClientRect().width;
-      slidesTrack.style.transition = 'none';
-      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      setTimeout(() => slidesTrack.style.transition = 'transform 0.4s ease');
-    }
-
-    function updateSlide() {
-      slidesTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-      updateDots();
-    }
-
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateSlide();
-    });
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateSlide();
-    });
-
-    window.addEventListener('resize', () => {
-      recalc();
-    });
-
-    // Initialize
-    recalc();
-
-    // Optional: swipe support for touch devices
-    let startX = 0;
-    let isDragging = false;
-
-    slidesTrack.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      slidesTrack.style.transition = 'none';
-    });
-    slidesTrack.addEventListener('touchmove', e => {
-      if (!isDragging) return;
-      const currentX = e.touches[0].clientX;
-      const deltaX = currentX - startX;
-      slidesTrack.style.transform = `translateX(${-currentIndex * slideWidth + -deltaX}px)`;
-    });
-    slidesTrack.addEventListener('touchend', e => {
-      isDragging = false;
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
-      if (diff > 50) {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      } else if (diff < -50) {
-        currentIndex = (currentIndex + 1) % slides.length;
-      }
-      slidesTrack.style.transition = 'transform 0.4s ease';
-      updateSlide();
-    });
-  })();
+  setInterval(() => {
+    slides[currentIndex].classList.remove("active");
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add("active");
+  }, 4000); // every 4 sec
 </script>
 
 </body>
 </html>
-
-        
