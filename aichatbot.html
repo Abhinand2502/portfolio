@@ -151,39 +151,47 @@
     display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
   }
 .tech-stack {
-  display: flex;
-  flex-wrap: wrap;   
-  gap: 12px;         /* Keep same spacing */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
 .tech-tag {
-  background: #000000;
-  color: #ffffff;
+  background: #000000;        /* Black background */
+  color: #ffffff;             /* White text */
   font-weight: 600;
-  font-size: 0.75rem;     /* Smaller text */
-  padding: 5px 10px;      /* Reduced padding */
-  border-radius: 6px;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
-  gap: 6px;               /* Space between logo & text */
+  gap: 8px;
   white-space: nowrap;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: 1px solid #222;     /* Subtle border */
 }
 
 .tech-tag img {
-  width: 14px;            /* Smaller logos */
-  height: 14px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
-  background: #111111;
+  background: #111111;        /* Dark square behind logo */
   border-radius: 4px;
   padding: 2px;
 }
 
-/* Hover zoom */
+/* Hover effect */
 .tech-tag:hover {
-  transform: scale(1.12); /* Slight zoom */
+  transform: translateY(-2px) scale(1.08);
   background: #111111;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Mobile view → 2 columns */
+@media (max-width: 600px) {
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .features {
