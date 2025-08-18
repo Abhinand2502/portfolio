@@ -1,192 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AI-AssistCart Project</title>
+
 <style>
-  body {
-    margin: 0;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    background: #f9fafb;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  :root{
+    --header-bg:#000000;
+    --card-bg:#fff;
+    --page-bg:#f9fafb;
+    --shadow:0 6px 20px rgba(0,0,0,.08);
   }
 
-  /* Header bar */
-  .top-header {
-    background: #0c3946;
-    color: #fff;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .top-header a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  .top-header a:hover {
-    text-decoration: underline;
+  /* Base */
+  body{
+    margin:0;
+    font-family:"Segoe UI", Tahoma, sans-serif;
+    background:var(--page-bg);
   }
 
-  .wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 15px;
+  .home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: #000;       /* button color */
+  color: #fff;            /* icon color */
+  font-size: 22px;
+  border-radius: 50%;     /* makes it a circle */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: fixed;        /* floating bottom-right */
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.home-btn:hover {
+  background: #007bff;    /* blue on hover */
+  transform: scale(1.15); /* zoom effect */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+  /* Top header (kept) */
+  .top-header{
+    background:var(--header-bg);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .top-header a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+  }
+  .top-header a:hover{ text-decoration:underline; }
+
+  /* Card wrapper */
+  .wrapper{
+    display:flex;
+    justify-content:center;
+    padding:30px 15px;
+  }
+  .project-card{
+    background:var(--card-bg);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    max-width:1100px;
+    width:100%;
+    overflow:hidden;
   }
 
-  .project-card {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    max-width: 1100px;
-    width: 100%;
-    overflow: hidden;
+  /* Slider header (black bg only here) */
+  .project-header{
+    position:relative;
+    overflow:hidden;
+    background:#000; /* black only for slider area */
   }
 
-  /* Header with slider */
-  .project-header {
-    position: relative;
-    overflow: hidden;
+  .project-slider{
+    position:relative;
+    width:100%;
+    height:450px;       /* desktop height */
+    background:#000;
   }
 
-  .project-slider {
-    position: relative;
-    width: 100%;
-    height: 60vh; /* use screen height for landscape */
-    min-height: 280px;
-    background: #000;
-  }
-  .project-slider img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-  }
-  .project-slider img.active {
-    opacity: 1;
-    transform: scale(1.02); /* subtle zoom effect */
+  /* Stack slides on top of each other */
+  .project-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;     /* keep aspect ratio */
+    opacity:0;              /* hidden by default */
+    transform:scale(1.02);  /* slight in-scale for “appear” */
+    transition:
+      opacity 480ms ease,
+      transform 650ms ease;
+    will-change: opacity, transform;
   }
 
-  .status-badge {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    background: #16a34a;
-    color: #fff;
-    font-weight: 600;
-    font-size: 0.9rem;
-    padding: 6px 14px;
-    border-radius: 20px;
-    z-index: 5;
+  /* Visible slide */
+  .project-slider img.active{
+    opacity:1;
+    transform:scale(1);     /* settle to 1 */
   }
 
-  .project-header h2 {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-shadow: 0 3px 6px rgba(0,0,0,0.6);
-    z-index: 5;
+  /* Zoom-out + fade to black */
+  .project-slider img.out{
+    opacity:0 !important;
+    transform:scale(0.92) !important; /* zoom out */
+    transition:
+      opacity 450ms ease,
+      transform 550ms ease;
+  }
+
+  /* Overlay bits */
+  .status-badge{
+    position:absolute;
+    top:14px; right:14px;
+    background:#16a34a; color:#fff;
+    font-weight:600; font-size:.9rem;
+    padding:6px 14px; border-radius:20px;
+    z-index:2;
+  }
+  .project-header h2{
+    position:absolute; left:20px; bottom:20px;
+    color:#fff; z-index:2;
+    font-size:1.8rem; font-weight:700;
+    text-shadow:0 3px 6px rgba(0,0,0,.6);
+    margin:0;
   }
 
   /* Content */
-  .project-content {
-    padding: 24px;
+  .project-content{ padding:20px; }
+  .project-meta{
+    display:flex; justify-content:space-between;
+    color:#000000; font-size:.95rem; margin-bottom:10px;
+  }
+  .project-description{
+    color:#000000; line-height:1.6; margin-bottom:18px;
+  }
+  .tech-stack{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
+  }
+.tech-tag {
+  background: #000000;   /* Black background */
+  color: #ffffff;        /* White text */
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-tag img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  background: #010101;      /* White background only behind logo */
+  border-radius: 4px;       /* Rounded small square */
+  padding: 2px;             /* Some spacing inside */
+}
+
+/* Hover zoom */
+.tech-tag:hover {
+  transform: scale(1.15);
+  background: #111111;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+
+  .features{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:12px; margin-bottom:20px;
+  }
+  .feature-item{ display:flex; align-items:center; color:#000000; }
+  .feature-item::before{ content:"★"; color:#facc15; margin-right:8px; }
+
+  .action-btn{
+    display:inline-block;
+    background:linear-gradient(135deg,#161717,#000000);
+    color:#fff; font-weight:600;
+    padding:12px 28px; border-radius:30px;
+    text-decoration:none; font-size:.95rem;
+    transition:box-shadow .3s ease, transform .2s ease;
+  }
+  .action-btn:hover{ box-shadow:0 8px 18px rgba(33, 110, 226, 0.4); transform:translateY(-3px); }
+
+  /* Mobile */
+  @media (max-width: 768px){
+    .project-slider{ height:260px; }
+    .project-header h2{ font-size:1.3rem; }
+    .project-meta{ flex-direction:column; gap:6px; }
   }
 
-  .project-meta {
-    display: flex;
-    justify-content: space-between;
-    color: #6b7280;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-  }
-
-  .project-description {
-    color: #374151;
-    line-height: 1.6;
-    margin-bottom: 18px;
-    font-size: 1rem;
-  }
-
-  /* Tech stack tags */
-  .tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .tech-tag {
-    background: #f1f5f9;
-    color: #111827;
-    font-weight: 600;
-    font-size: 0.85rem;
-    padding: 6px 12px;
-    border-radius: 8px;
-  }
-
-  /* Features grid */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .feature-item {
-    display: flex;
-    align-items: center;
-    font-size: 0.95rem;
-    color: #374151;
-  }
-  .feature-item::before {
-    content: "★";
-    color: #facc15;
-    margin-right: 8px;
-  }
-
-  /* Button */
-  .action-btn {
-    display: inline-block;
-    background: linear-gradient(135deg, #0066ff, #0c3946);
-    color: #fff;
-    font-weight: 600;
-    padding: 12px 28px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-  }
-  .action-btn:hover {
-    box-shadow: 0 8px 18px rgba(0, 102, 255, 0.4);
-    transform: translateY(-3px);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .project-slider { height: 45vh; }
-    .project-header h2 { font-size: 1.3rem; }
-    .project-content { padding: 16px; }
-  }
-  @media (max-width: 480px) {
-    .project-slider { height: 35vh; }
-    .project-header h2 { font-size: 1.1rem; }
-    .action-btn { padding: 10px 22px; font-size: 0.85rem; }
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .project-slider img{ transition:none !important; }
   }
 </style>
 </head>
@@ -194,56 +215,64 @@
 
 <!-- Top Header -->
 <div class="top-header">
-  <a href="index.html">← Back to Home</a>
-  <span>AI-AssistCart Project</span>
+<a href="index.html" class="home-link"><i class="fas fa-home"></i> Home</a>
+
+  <span>AI- Chatbot Project</span>
 </div>
 
 <div class="wrapper">
   <div class="project-card">
-    <!-- Header with slider -->
+    <!-- Slider header -->
     <div class="project-header">
-      <div class="project-slider">
+      <div class="project-slider" id="slider">
         <img src="images/chat1 (1).png" alt="AI AssistCart Screenshot 1" class="active">
         <img src="images/chat1 (2).png" alt="AI AssistCart Screenshot 2">
-        <img src="images/chat1 (3).png" alt="AI AssistCart Screenshot 3">
       </div>
       <div class="status-badge">Completed</div>
-      <h2>AI-AssistCart - Smart Chatbot Platform</h2>
+      <h2>AI-Chatbot - Smart Chatbot Platform</h2>
     </div>
 
     <!-- Content -->
     <div class="project-content">
       <div class="project-meta">
         <span>🤖 Chatbot Project</span>
-        <span>2024</span>
+        <span>2025</span>
       </div>
 
       <p class="project-description">
-        AI-AssistCart is a chatbot built with Django that supports English and Malayalam. 
-        It uses fuzzy matching with a local dataset, regex-based personalization, and Cohere API 
-        for intelligent responses.
+       An AI-powered bilingual chatbot built with Django, designed to communicate in both English and Malayalam. It uses a local dataset with fuzzy matching for quick responses, regex-based name recognition for personalization, and seamlessly integrates with Cohere’s AI model to handle complex queries with natural and intelligent replies.
       </p>
 
-      <!-- Tech stack -->
       <div class="tech-stack">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">Django</span>
-        <span class="tech-tag">HTML</span>
-        <span class="tech-tag">CSS</span>
-        <span class="tech-tag">JavaScript</span>
-        <span class="tech-tag">Cohere API</span>
-      </div>
+  <span class="tech-tag">
+    <img src="images/python.png" alt="Python Logo">Python
+  </span>
+  <span class="tech-tag">
+    <img src="images/django.png" alt="Django Logo"> Django
+  </span>
+  <span class="tech-tag">
+    <img src="images/html.png" alt="HTML Logo"> HTML
+  </span>
+  <span class="tech-tag">
+    <img src="images/css.png" alt="CSS Logo"> CSS
+  </span>
+  <span class="tech-tag">
+    <img src="images/java.png" alt="JavaScript Logo">JavaScript
+  </span>
+  <span class="tech-tag">
+    <img src="images/COHERE.png" alt="Cohere Logo"> Cohere API
+  </span>
+</div>
 
-      <!-- Features -->
+
       <div class="features">
         <div class="feature-item">Bilingual Chat (EN + ML)</div>
-        <div class="feature-item">User Engagement</div>
-        <div class="feature-item">Regex Name Extraction</div>
+        <div class="feature-item">Personalized Interaction</div>
+        <div class="feature-item">Smart Response System</div>
         <div class="feature-item">Cohere API Integration</div>
-        <div class="feature-item">Responsive UI</div>
+        <div class="feature-item">AI-Powered</div>
       </div>
 
-      <!-- Button -->
       <a href="https://github.com/Abhinand2502/AiChatbot" target="_blank" class="action-btn">
         💻 View Code
       </a>
@@ -252,15 +281,57 @@
 </div>
 
 <script>
-  // Auto slider with smooth fade + zoom
-  const slides = document.querySelectorAll(".project-slider img");
-  let currentIndex = 0;
+  // Cinematic sequence:
+  // show -> zoom out & fade to BLACK -> next fades in
+  const slider = document.getElementById('slider');
+  const slides = Array.from(slider.querySelectorAll('img'));
 
-  setInterval(() => {
-    slides[currentIndex].classList.remove("active");
-    currentIndex = (currentIndex + 1) % slides.length;
-    slides[currentIndex].classList.add("active");
-  }, 4000); // every 4 sec
+  let current = 0;
+  const SHOW_TIME   = 2600; // time each slide is fully visible
+  const OUT_TIME    = 550;  // zoom-out + fade duration (matches CSS)
+  const BLACK_GAP   = 200;  // pure black pause between slides
+  const CYCLE_TIME  = SHOW_TIME + OUT_TIME + BLACK_GAP;
+
+  function step(){
+    const curr = slides[current];
+    const nextIndex = (current + 1) % slides.length;
+    const next = slides[nextIndex];
+
+    // 1) Start zoom-out & fade of current
+    curr.classList.add('out');     // zoom out + fade
+    curr.classList.remove('active');
+
+    // 2) After OUT_TIME + BLACK_GAP, turn on next
+    setTimeout(() => {
+      // ensure EVERY slide except next is fully hidden
+      slides.forEach((img, i) => {
+        if(i !== nextIndex){ img.classList.remove('active'); img.classList.remove('out'); }
+      });
+      next.classList.add('active'); // fade in (bg is black underneath)
+      current = nextIndex;
+    }, OUT_TIME + BLACK_GAP);
+  }
+
+  // Kickoff: ensure first is active
+  slides.forEach((img, i) => img.classList.toggle('active', i === 0));
+
+  // Run loop
+  setInterval(step, CYCLE_TIME);
+
+  // Optional: pause on hover (desktop)
+  let paused = false, hoverTimer;
+  slider.addEventListener('mouseenter', () => { paused = true; });
+  slider.addEventListener('mouseleave', () => { paused = false; });
+  // Replace setInterval with manual loop so hover pause works cleanly
+  clearInterval(); // no-op placeholder
+
+  // Manual loop honoring pause
+  (function loop(){
+    setTimeout(() => {
+      if(!paused) step();
+      loop();
+    }, CYCLE_TIME);
+  })();
 </script>
 
 </body>
