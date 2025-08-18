@@ -142,26 +142,24 @@
   .project-content{ padding:20px; }
   .project-meta {
   display: flex;
-  justify-content: space-between; /* left + right */
   align-items: center;
-  padding: 10px 14px;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
   font-size: 0.95rem;
   font-weight: 500;
   color: #111827;
   margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-  white-space: nowrap;  /* prevent wrapping */
+  gap: 10px; /* small spacing */
 }
 
-/* Optional: shrink text a bit on very small screens */
-@media (max-width: 480px) {
-  .project-meta {
-    font-size: 0.85rem;
-    padding: 8px 10px;
-  }
+.project-meta span:first-child {
+  flex-shrink: 1;      /* shrink if text is long */
+  white-space: nowrap; /* stay on one line */
+  overflow: hidden;
+  text-overflow: ellipsis; /* prevent breaking */
+}
+
+.project-meta span:last-child {
+  margin-left: auto;   /* always push to right */
+  white-space: nowrap; /* keep year inline */
 }
 
 .project-description {
