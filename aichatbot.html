@@ -144,9 +144,17 @@
     display:flex; justify-content:space-between;
     color:#000000; font-size:.95rem; margin-bottom:10px;
   }
-  .project-description{
-    color:#000000; line-height:1.6; margin-bottom:18px;
-  }
+.project-description {
+  color: #111111;            /* Clean dark text */
+  font-size: 1rem;           /* Standard size */
+  line-height: 1.7;          /* Comfortable spacing */
+  margin: 0 auto 20px;       /* Centered with bottom space */
+  max-width: 800px;          /* Prevents too-wide text on desktop */
+  padding: 0 16px;           /* Keeps text away from screen edges */
+  word-break: break-word;    /* Handles long words gracefully */
+  text-align: justify;       /* Balanced look */
+}
+
   .tech-stack{
     display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
   }
@@ -228,15 +236,24 @@
 }
 
 
-  .action-btn{
-    display:inline-block;
-    background:linear-gradient(135deg,#161717,#000000);
-    color:#fff; font-weight:600;
-    padding:12px 28px; border-radius:30px;
-    text-decoration:none; font-size:.95rem;
-    transition:box-shadow .3s ease, transform .2s ease;
-  }
-  .action-btn:hover{ box-shadow:0 8px 18px rgba(33, 110, 226, 0.4); transform:translateY(-3px); }
+  .action-btn {
+  display: inline-block;
+  background: #000000;     /* Solid black */
+  color: #ffffff;          /* White text */
+  font-weight: 600;
+  padding: 10px 22px;      /* Balanced spacing */
+  border-radius: 8px;      /* Matches tech-tag rounded corners */
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid #111;  /* Subtle border */
+}
+
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #111111;     /* Slightly lighter hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
 
   /* Mobile */
   @media (max-width: 768px){
