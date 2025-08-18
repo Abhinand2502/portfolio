@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portfolio</title>
+
+<style>
+  :root{
+    --header-bg:#000000;
+    --card-bg:#fff;
+    --page-bg:#f9fafb;
+    --shadow:0 6px 20px rgba(0,0,0,.08);
+  }
+
+  /* Base */
+  body{
+    margin:0;
+    font-family:"Segoe UI", Tahoma, sans-serif;
+    background:var(--page-bg);
+  }
+
+  .home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: #000;       /* button color */
+  color: #fff;            /* icon color */
+  font-size: 22px;
+  border-radius: 50%;     /* makes it a circle */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  position: fixed;        /* floating bottom-right */
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.home-btn:hover {
+  background: #007bff;    /* blue on hover */
+  transform: scale(1.15); /* zoom effect */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+}
+
+  /* Top header (kept) */
+  .top-header{
+    background:var(--header-bg);
+    color:#fff;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .top-header a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+    font-size:1rem;
+  }
+  .top-header a:hover{ text-decoration:underline; }
+
+  /* Card wrapper */
+  .wrapper{
+    display:flex;
+    justify-content:center;
+    padding:30px 15px;
+  }
+  .project-card{
+    background:var(--card-bg);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    max-width:1100px;
+    width:100%;
+    overflow:hidden;
+  }
+
+  /* Slider header (black bg only here) */
+  .project-header{
+    position:relative;
+    overflow:hidden;
+    background:#000; /* black only for slider area */
+  }
+
+  .project-slider{
+    position:relative;
+    width:100%;
+    height:450px;       /* desktop height */
+    background:#000;
+  }
+
+  /* Stack slides on top of each other */
+  .project-slider img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;     /* keep aspect ratio */
+    opacity:0;              /* hidden by default */
+    transform:scale(1.02);  /* slight in-scale for “appear” */
+    transition:
+      opacity 480ms ease,
+      transform 650ms ease;
+    will-change: opacity, transform;
+  }
+
+  /* Visible slide */
+  .project-slider img.active{
+    opacity:1;
+    transform:scale(1);     /* settle to 1 */
+  }
+
+  /* Zoom-out + fade to black */
+  .project-slider img.out{
+    opacity:0 !important;
+    transform:scale(0.92) !important; /* zoom out */
+    transition:
+      opacity 450ms ease,
+      transform 550ms ease;
+  }
+
+  /* Overlay bits */
+  .status-badge{
+    position:absolute;
+    top:14px; right:14px;
+    background:#16a34a; color:#fff;
+    font-weight:600; font-size:.9rem;
+    padding:6px 14px; border-radius:20px;
+    z-index:2;
+  }
+  .project-header h2{
+    position:absolute; left:20px; bottom:20px;
+    color:#fff; z-index:2;
+    font-size:1.8rem; font-weight:700;
+    text-shadow:0 3px 6px rgba(0,0,0,.6);
+    margin:0;
+  }
+
+  /* Content */
+  .project-content{ padding:20px; }
+  .project-meta {
+  display: flex;
+  justify-content: space-between; /* one left, one right */
+  align-items: center;
+  font-size: 0.99rem;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 12px;
+  width: 100%;
+  flex-wrap: nowrap; /* prevent wrapping to next line */
+}
+.project-description {
+  color: #000000;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 16px 0;
+  width: 100%;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  text-align: justify;
+  word-wrap: break-word;       /* breaks long words */
+  overflow-wrap: break-word;   /* modern support */
+  box-sizing: border-box;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .project-description {
+    font-size: 1.1rem;        /* slightly smaller for readability */
+    text-align: left;         /* avoid weird big spacing */
+    padding: 14px 16px;
+  }
+}
+
+  .tech-stack{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px;
+  }
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.tech-tag {
+  background: #000000;        /* Black background */
+  color: #ffffff;             /* White text */
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  border: 1px solid #222;     /* Subtle border */
+}
+
+.tech-tag img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  background: #111111;        /* Dark square behind logo */
+  border-radius: 4px;
+  padding: 2px;
+}
+
+/* Hover effect */
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.08);
+  background: #111111;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Mobile view → 2 columns */
+@media (max-width: 600px) {
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f9fafb;         /* Light background */
+  border: 1px solid #e5e7eb;   /* Soft border */
+  border-radius: 10px;
+  color: #111111;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-item::before {
+  content: "★";
+  color: #facc15;   /* Gold star */
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.feature-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: #ffffff;
+}
+
+
+  .action-btn {
+  display: inline-block;
+  background: #000000;     /* Solid black */
+  color: #ffffff;          /* White text */
+  font-weight: 600;
+  padding: 10px 22px;      /* Balanced spacing */
+  border-radius: 8px;      /* Matches tech-tag rounded corners */
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: transform 0.25s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid #111;  /* Subtle border */
+}
+
+.action-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: #111111;     /* Slightly lighter hover */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+  /* Mobile */
+  @media (max-width: 768px){
+    .project-slider{ height:260px; }
+    .project-header h2{ font-size:1.3rem; }
+    .project-meta{ flex-direction:column; gap:6px; }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    .project-slider img{ transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Header -->
+<div class="top-header">
+<a href="index.html" class="home-link"><i class="fas fa-home"></i> Home</a>
+
+  <span>AI- Chatbot Project</span>
+</div>
+
+<div class="wrapper">
+  <div class="project-card">
+    <!-- Slider header -->
+    <div class="project-header">
+      <div class="project-slider" id="slider">
+        <img src="images/portoooo.png" alt="AI AssistCart Screenshot 1" class="active">
+        <img src="images/portoooo.png" alt="AI AssistCart Screenshot 2">
+      </div>
+      <div class="status-badge">Completed</div>
+      <h2>Portfolio</h2>
+    </div>
+
+    <!-- Content -->
+    <div class="project-content">
+      <div class="project-meta">
+        <span>Portfolio</span>
+      </div>
+
+      <p class="project-description">
+       My personal portfolio website, designed and developed by me to showcase my skills, projects, and creative work. The portfolio highlights my journey as a developer, featuring my expertise in Python, Django, HTML, CSS, JavaScript, React.js, and AI/ML.
+
+      <div class="tech-stack">
+  <span class="tech-tag">
+    <img src="images/python.png" alt="Python Logo">Python
+  </span>
+  <span class="tech-tag">
+    <img src="images/django.png" alt="Django Logo"> Django
+  </span>
+  <span class="tech-tag">
+    <img src="images/html.png" alt="HTML Logo"> HTML
+  </span>
+  <span class="tech-tag">
+    <img src="images/css.png" alt="CSS Logo"> CSS
+  </span>
+</div>
+
+<div class="features">
+        <div class="feature-item">Responsive Design</div>
+        <div class="feature-item">Clean UI/UX</div>
+        <div class="feature-item">Dynamic Project Showcase</div>
+        <div class="feature-item">About Me Section</div>
+        <div class="feature-item">Skills Section</div>
+        <div class="feature-item">Downloadable Resume</div>
+        <div class="feature-item">Animations & Transitions</div>
+        <div class="feature-item">Social Media Integration</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Cinematic sequence:
+  // show -> zoom out & fade to BLACK -> next fades in
+  const slider = document.getElementById('slider');
+  const slides = Array.from(slider.querySelectorAll('img'));
+
+  let current = 0;
+  const SHOW_TIME   = 2600; // time each slide is fully visible
+  const OUT_TIME    = 550;  // zoom-out + fade duration (matches CSS)
+  const BLACK_GAP   = 200;  // pure black pause between slides
+  const CYCLE_TIME  = SHOW_TIME + OUT_TIME + BLACK_GAP;
+
+  function step(){
+    const curr = slides[current];
+    const nextIndex = (current + 1) % slides.length;
+    const next = slides[nextIndex];
+
+    // 1) Start zoom-out & fade of current
+    curr.classList.add('out');     // zoom out + fade
+    curr.classList.remove('active');
+
+    // 2) After OUT_TIME + BLACK_GAP, turn on next
+    setTimeout(() => {
+      // ensure EVERY slide except next is fully hidden
+      slides.forEach((img, i) => {
+        if(i !== nextIndex){ img.classList.remove('active'); img.classList.remove('out'); }
+      });
+      next.classList.add('active'); // fade in (bg is black underneath)
+      current = nextIndex;
+    }, OUT_TIME + BLACK_GAP);
+  }
+
+  // Kickoff: ensure first is active
+  slides.forEach((img, i) => img.classList.toggle('active', i === 0));
+
+  // Run loop
+  setInterval(step, CYCLE_TIME);
+
+  // Optional: pause on hover (desktop)
+  let paused = false, hoverTimer;
+  slider.addEventListener('mouseenter', () => { paused = true; });
+  slider.addEventListener('mouseleave', () => { paused = false; });
+  // Replace setInterval with manual loop so hover pause works cleanly
+  clearInterval(); // no-op placeholder
+
+  // Manual loop honoring pause
+  (function loop(){
+    setTimeout(() => {
+      if(!paused) step();
+      loop();
+    }, CYCLE_TIME);
+  })();
+</script>
+
+</body>
+</html>
