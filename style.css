@@ -196,7 +196,6 @@ footer {
   }
 }
 
-  
 .projects-section {
   background: #f8f9fa;
   color: #111;
@@ -264,8 +263,6 @@ footer {
 .btn.view-btn:hover {
   background-color: #1f2937;
 }
-
-
 
 /* Mobile adjustments */
 @media (max-width: 600px) {
