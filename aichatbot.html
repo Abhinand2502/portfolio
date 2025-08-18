@@ -142,17 +142,23 @@
   .project-content{ padding:20px; }
   .project-meta {
   display: flex;
-  justify-content: space-between; /* left + right alignment */
+  justify-content: space-between; /* one left, one right */
   align-items: center;
   font-size: 0.95rem;
   font-weight: 500;
   color: #111827;
   margin-bottom: 12px;
-  width: 100%;   /* take full width */
+  width: 100%;              /* full width */
 }
 
-.project-meta span {
-  white-space: nowrap; /* prevent wrapping */
+.project-meta span:first-child {
+  margin-right: auto;       /* stick to the left */
+  text-align: left;
+}
+
+.project-meta span:last-child {
+  margin-left: auto;        /* stick to the right */
+  text-align: right;
 }
 
 .project-description {
