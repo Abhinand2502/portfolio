@@ -145,24 +145,22 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  background: #ffffff;             /* light background */
-  border: 1px solid #e5e7eb;       /* subtle border */
-  border-radius: 8px;              /* smooth rounded corners */
+  background: #f9fafb;             
+  border: 1px solid #e5e7eb;       
+  border-radius: 8px;              
   font-size: 0.95rem;
   font-weight: 500;
-  color: #111827;                  /* darker text */
+  color: #111827;                  
   margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* soft shadow */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  flex-wrap: nowrap;   /* ❌ prevent wrapping */
 }
 
-/* Make responsive for small screens */
+/* On smaller screens, just adjust text size and spacing */
 @media (max-width: 600px) {
   .project-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    font-size: 0.9rem;
-    padding: 12px;
+    font-size: 0.85rem;
+    padding: 8px 12px;
   }
 }
 
