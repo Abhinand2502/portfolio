@@ -187,55 +187,132 @@
 <section id="projects" class="projects-section" role="region" aria-labelledby="projects-heading">
   <h2 id="projects-heading">MY PROJECTS</h2>
 
+  <!-- 🔍 Search Bar -->
+  <div class="search-container">
+    <input type="text" id="project-search" placeholder="Search projects..." aria-label="Search projects">
+  </div>
+
   <div class="projects-grid">
 
-  <!-- AI Chatbot -->
-  <div class="project-card">
-    <img src="images/chat1 (1).png" alt="AI Chatbot Logo" class="project-logo">
-    <h3>AI-Chatbot - Smart Chatbot Platform</h3>
-    <a href="aichatbot.html" class="btn view-btn" aria-label="View details about AI Chatbot">View Details</a>
+    <!-- First 3 projects (always visible) -->
+    <div class="project-card">
+      <img src="images/chat1 (1).png" alt="AI Chatbot Logo" class="project-logo">
+      <h3>AI-Chatbot - Smart Chatbot Platform</h3>
+      <a href="aichatbot.html" class="btn view-btn">View Details</a>
+    </div>
+
+    <div class="project-card">
+      <img src="images/THOME.png" alt="DetexAI Logo" class="project-logo">
+      <h3>DetexAI – AI Trash Detection System</h3>
+      <a href="Detexai-image.html" class="btn view-btn">View Details</a>
+    </div>
+
+    <div class="project-card">
+      <img src="images/login.png" alt="AI-AssistCart Logo" class="project-logo">
+      <h3>AI-AssistCart – Personalized AI Shopping</h3>
+      <a href="ai-assistcart-image.html" class="btn view-btn">View Details</a>
+    </div>
+
+    <!-- Remaining projects (hidden by default) -->
+    <div class="project-card hidden">
+      <img src="assets/tic (3).png" alt="Tic Tac Toe Logo" class="project-logo">
+      <h3>Tic-Tac-Toe game</h3>
+      <a href="tictac.html" class="btn view-btn">View Details</a>
+    </div>
+
+    <div class="project-card hidden">
+      <img src="assets/todo.png" alt="To Do List Logo" class="project-logo">
+      <h3>To-Do List app</h3>
+      <a href="to_do.html" class="btn view-btn">View Details</a>
+    </div>
+    
+    <div class="project-card hidden">
+      <img src="images/portoooo.png" alt="Portfolio Logo" class="project-logo">
+      <h3>Portfolio</h3>
+      <a href="porto.html" class="btn view-btn">View Details</a>
+    </div>
+
   </div>
 
-  <!-- DetexAI -->
-  <div class="project-card">
-    <img src="images/THOME.png" alt="DetexAI Logo" class="project-logo">
-    <h3>DetexAI – AI Trash Detection System</h3>
-    <a href="Detexai-image.html" class="btn view-btn" aria-label="View details about DetexAI">View Details</a>
+  <!-- Show More Button -->
+  <div class="show-more-container">
+    <button id="show-more-btn" class="btn">Show More</button>
   </div>
-
-  <!-- AI-AssistCart -->
-  <div class="project-card">
-    <img src="images/login.png" alt="AI-AssistCart Logo" class="project-logo">
-    <h3>AI-AssistCart – Personalized AI Shopping</h3>
-    <a href="ai-assistcart-image.html" class="btn view-btn" aria-label="View details about AI-AssistCart">View Details</a>
-  </div>
-
-
-    <!-- port -->
-  <div class="project-card">
-    <img src="assets/tic (3).png" alt="AI-AssistCart Logo" class="project-logo">
-    <h3>Tic-Tac-Toe game</h3>
-    <a href="tictac.html" class="btn view-btn" aria-label="View details about AI-AssistCart">View Details</a>
-  </div>
-
-   <!-- port -->
-  <div class="project-card">
-    <img src="assets/todo.png" alt="AI-AssistCart Logo" class="project-logo">
-    <h3>To-Do List app</h3>
-    <a href="to_do.html" class="btn view-btn" aria-label="View details about AI-AssistCart">View Details</a>
-  </div>
-  
-  <!-- port -->
-  <div class="project-card">
-    <img src="images/portoooo.png" alt="AI-AssistCart Logo" class="project-logo">
-    <h3>Portfolio</h3>
-    <a href="porto.html" class="btn view-btn" aria-label="View details about AI-AssistCart">View Details</a>
-  </div>
-
-
-</div>
-
 </section>
+
+<!-- 🔎 Script -->
+<script>
+  const searchInput = document.getElementById("project-search");
+  const projectCards = document.querySelectorAll(".project-card");
+  const hiddenProjects = document.querySelectorAll(".project-card.hidden");
+  const showMoreBtn = document.getElementById("show-more-btn");
+
+  // Search filter
+  searchInput.addEventListener("keyup", function() {
+    const query = searchInput.value.toLowerCase();
+    projectCards.forEach(card => {
+      const title = card.querySelector("h3").textContent.toLowerCase();
+      card.style.display = title.includes(query) ? "block" : "none";
+    });
+  });
+
+  // Show More / Show Less toggle
+  showMoreBtn.addEventListener("click", function() {
+    hiddenProjects.forEach(card => {
+      card.classList.toggle("hidden");
+    });
+    showMoreBtn.textContent = 
+      showMoreBtn.textContent === "Show More" ? "Show Less" : "Show More";
+  });
+</script>
+
+<!-- CSS -->
+<style>
+  .search-container {
+    margin: 15px 0;
+    text-align: center;
+  }
+
+  #project-search {
+    padding: 10px 15px;
+    width: 60%;
+    max-width: 400px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+  }
+
+  #project-search:focus {
+    border-color: #0078ff;
+    box-shadow: 0 0 8px rgba(0,120,255,0.5);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .show-more-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .btn {
+    background: #0078ff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: #005ecb;
+  }
+</style>
+
 
 
 
